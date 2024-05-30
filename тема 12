@@ -1,0 +1,527 @@
+Зад.1
+За всяка от клавишните комбинации задайте нейното действие във Visual Studio
+Отг.
+Ctrl-K + Ctrl-C [закоментиране на избраните редове]
+Ctrl-K + Ctrl-U [премахване на коментар от избраните редове]
+Ctrl-K + Ctrl-D [подреждане (форматиране) на кода]
+Ctrl + Shift + N [създаване на нов файл]
+
+Зад.2
+За какво служи клавишната комбинация Ctrl + K, Ctrl + D?
+Отг.
+подреждане на кода
+
+Зад.3
+За какво служи клавиш F5 във Visual Studio?
+Отг.
+стартиране на програмата в дебъг режим
+
+Зад.4
+Свържете всеки от посочените случаи с решение, в което средата се използва пълноценно.
+Отг.
+одът не е добре подреден - [използваме автоматично форматиране (подреждане)]
+Разполагаме с файл с около 3000 реда, трябва да намерим тялото на метод, чието име знаем - [Навигираме до метода с помощта на F12]
+Налага се често да пишем стандартни фрагменти код - [Използваме снипети, където е възможно]
+
+Зад.5
+Обяснете каква е разликата между Solution (Решение) и Project (Проект) във Visual Studio.
+Отг.
+Разликата е ,че solution-ът е по-голямата единица спрямо проекта. Solution-ът е като контейнер ,който съдържа всички нужни неща (проекти) за един софтуеререн продукт ,докато един проект представлява определена фукнционалност на продукта. На solution-ът може да му гледаме като къща ,а на проектите като стаите в тази къща ,които имат собствените си функционалности. Както един solution може да има много проекти ,така и един проект може да има много solution-и.
+
+Зад.6
+Демонстрирайте използването на библиотеката System.Text.Json (в .NET 5+) за десериализиране от JSON към обект.
+Отг.
+Демонстрирайте използването на библиотеката System.Text.Json (в .NET 5+) за десериализиране от JSON към обект.
+
+using Отговор-[System.Text.Json];
+
+namespace DeserializeExtra
+{
+    public class WeatherForecast
+    {
+        public DateTimeOffset Date { get; set; }
+        public int TemperatureCelsius { get; set; }
+        public string? Summary { get; set; }
+        public string? SummaryField;
+        public IList<DateTimeOffset>? DatesAvailable { get; set; }
+        public Dictionary<string, HighLowTemps>? TemperatureRanges { get; set; }
+        public string[]? SummaryWords { get; set; }
+    }
+
+    public class HighLowTemps
+    {
+        public int High { get; set; }
+        public int Low { get; set; }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            string jsonString =
+@"{
+  ""Date"": ""2019-08-01T00:00:00-07:00"",
+  ""TemperatureCelsius"": 25,
+  ""Summary"": ""Hot"",
+  ""DatesAvailable"": [
+    ""2019-08-01T00:00:00-07:00"",
+    ""2019-08-02T00:00:00-07:00""
+  ],
+  ""TemperatureRanges"": {
+                ""Cold"": {
+                    ""High"": 20,
+      ""Low"": -10
+                },
+    ""Hot"": {
+                    ""High"": 60,
+      ""Low"": 20
+    }
+            },
+  ""SummaryWords"": [
+    ""Cool"",
+    ""Windy"",
+    ""Humid""
+  ]
+}
+";
+                
+            WeatherForecast? weatherForecast = Отговор-[JsonSerializer.Deserialize<WeatherForecast>(jsonString)]
+
+
+; 
+
+            Console.WriteLine($"Date: {weatherForecast?.Date}");
+            Console.WriteLine($"TemperatureCelsius: {weatherForecast?.TemperatureCelsius}");
+            Console.WriteLine($"Summary: {weatherForecast?.Summary}");
+        }
+    }
+}
+
+namespace SerializeBasic {
+		public class WeatherForecast {
+  		public DateTimeOffset Date { get; set; }
+    	public int TemperatureCelsius { get; set; }
+    	public string? Summary { get; set; }
+  	}
+  
+  	public class Program {
+  		public static void Main() {
+    		var weatherForecast = new WeatherForecast {
+      		Date = DateTime.Parse("2019-08-01"),
+        	TemperatureCelsius = 25,
+        	Summary = "Hot"
+      	};
+
+        Console.WriteLine(jsonString);
+      }
+    }
+}
+
+Отг.
+using System;
+
+using System.Collections.Generic;
+
+using System.Linq;
+
+using System.Text;
+
+using System.Threading.Tasks;
+
+using System.Text.Json;
+
+
+
+namespace ConsoleApp10
+
+{
+
+    class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+            List<Movie> movies = new List<Movie>();
+
+            movies.Add(new Movie()
+
+            {
+
+
+
+                Id = 1,
+
+                Name = "Movie 1",
+
+                Rating = 3,
+
+                Year = DateTime.Parse("1/1/1998")
+
+            });
+
+
+
+            movies.Add(new Movie()
+
+            {
+
+                Id = 2,
+
+                Name = "Movie 2",
+
+                Rating = 3,
+
+                Year = DateTime.Parse("1/1/2006")
+
+            });
+
+
+
+            string jsonString = JsonSerializer.Serialize(movies); // Подзадача 1
+
+
+
+            List<Movie> deserializedMovies = JsonSerializer.Deserialize<List<Movie>>(jsonString); //Подзадача 2
+
+
+
+            foreach (var movie in deserializedMovies)
+
+            {
+
+                Console.WriteLine($"Id: {movie.Id} , Name: {movie.Name} , Rating: {movie.Rating} ,Year: {movie.Year}");
+
+            }           
+
+        }
+
+    }
+
+}
+
+
+Зад.7
+Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+
+Условие:
+
+Да се напише програма, която трябва да обработва информация за филми в JSON вид.
+
+Създайте клас Movie със свойства за:
+
+● Id (int) – номер на филма
+
+● Name (string) – име на филма
+
+● Rating (decimal) – IMDB рейтинг на филма
+
+● Year (DateTime) – година на премиерата на филма
+
+Подзадачи:
+
+● Преобразувайте данните от клас Movie към JSON
+
+● Преобразувайте JSON към Movie
+
+Изберете подходяща библиотека за работа с JSON за реализиране на подзадачите.
+
+Фрагмент:
+
+Movie.cs:
+public class Movie
+{
+	public int Id { get; set
+	public string Name get; set; }
+	public decimal Rating { get; }
+	public DateTime Year get; set; }
+}
+
+Program.cs:
+using System;
+using System.Collections.Generic;
+
+namespace JSONMovie
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List movies = new List();
+            movies.Add(new Movie() {
+            
+                Id = 1,
+                Name = "Movie 1",
+                Rating = 3
+                Year = DateTime.Parse("1/1/1998")
+            })
+
+            movies.Add(new ()
+            {
+                Id = 2,
+                Name = "Movie 2",
+                Rating = 3,
+                Year = DateTime.Parse("1/1/2006")
+            });
+
+            string jsonString = JsonSerializer.(movies);
+
+            Console.WriteLine(jsonString)
+        }
+    }
+}
+
+Отг.
+
+using System;
+
+using System.Collections.Generic;
+
+using System.Linq;
+
+using System.Text;
+
+using System.Threading.Tasks;
+
+using System.Text.Json;
+
+
+
+namespace ConsoleApp10
+
+{
+
+    class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+            List<Movie> movies = new List<Movie>();
+
+            movies.Add(new Movie()
+
+            {
+
+
+
+                Id = 1,
+
+                Name = "Movie 1",
+
+                Rating = 3,
+
+                Year = DateTime.Parse("1/1/1998")
+
+            });
+
+
+
+            movies.Add(new Movie()
+
+            {
+
+                Id = 2,
+
+                Name = "Movie 2",
+
+                Rating = 3,
+
+                Year = DateTime.Parse("1/1/2006")
+
+            });
+
+
+
+            string jsonString = JsonSerializer.Serialize(movies); // Подзадача 1
+
+
+
+            List<Movie> deserializedMovies = JsonSerializer.Deserialize<List<Movie>>(jsonString); //Подзадача 2
+
+
+
+            foreach (var movie in deserializedMovies)
+
+            {
+
+                Console.WriteLine($"Id: {movie.Id} , Name: {movie.Name} , Rating: {movie.Rating} ,Year: {movie.Year}");
+
+            }           
+
+        }
+
+    }
+
+}
+
+
+
+using System;
+
+using System.Collections.Generic;
+
+using System.Linq;
+
+using System.Text;
+
+using System.Threading.Tasks;
+
+
+
+namespace ConsoleApp10
+
+{
+
+    public class Movie
+
+    {
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public decimal Rating { get; set; }
+
+        public DateTime Year { get; set; }
+
+    }
+
+}
+
+Зад.8
+Посочете за какво служи клавиша F12 във Visual Studio.
+Отг.
+Навигиране в кода /Go to Definition/ до тялото на даден метод
+
+Зад.9
+Посочете за какво служи клавишната комбинация Ctrl + Q във Visual Studio.
+Отг.
+Бързо стартиране /Quick Launch/
+
+Зад.10
+Посочете коя от изброените програми e среда за разработка на софтуер.
+Отг.
+ Visual Studio
+
+Зад.11
+Обяснете как се достъпва NuGET Package Manager.
+Отг.
+NuGET Package Manager-ът може да се достъпи чрез менюто Tools -> NuGET Package Manager и от там да се избере дали да се ползва графичния интерфейс или Package Manager Console.
+
+Зад.12
+Обяснете предназначението на breakpoint (точки на счупване) в дебъгера на Visual Studio
+Отг.
+Breakpoint-товете служат за умишлено прекъсване на работата на програмата по време на нейната работа с цел оправянето на логически грешки чрез проверка на стойности на променливи , условия и тн. Те се поставят на подозрителни в кода места. 
+
+Зад.13
+Обяснете как работят снипетите във Visual Studio. 
+Отг.
+Снипетите представляват парчета код ,които могат да викат в кода чрез клавишна комбинация или избрана комбинация от букви (cw= Console.WriteLine()). Те се използват за избягването на повторното писане на стандартен код в програмите и се пести време. 
+
+Зад.14
+За какво служи клавишната комбинация Ctrl + F5 във Visual Studio?
+Отг.
+стартиране на програмата в стандартен режим
+
+Зад.15
+Демонстрирайте как бихте инсталирали разширението CodeMaid в средата за разработка Visual Studio. Подредете картинките така, че да спазват правилната последователност от стъпките. 
+
+Номерирайте картинките, като използвате цифрите за влачене под таблицата.
+
+НЯМА !!!
+
+Зад.16
+Посочете коя от следните команди е коректна команда за инсталиране на пакета Banichka чрез Package Manager Console във Visual Studo.
+Отг.
+ Install-Package Banichka
+
+Зад.17
+Посочете с коя директива се включват в кода допълнителни библиотеки.
+Отг.
+using
+
+Зад.18
+Демонстрирайте използването на библиотеката System.Text.Json (в .NET 5+) за сериализиране към JSON.
+
+using Отговор [System.Text.Json]
+
+
+;
+namespace SerializeBasic {
+		public class WeatherForecast {
+  		public DateTimeOffset Date { get; set; }
+    	public int TemperatureCelsius { get; set; }
+    	public string? Summary { get; set; }
+  	}
+  
+  	public class Program {
+  		public static void Main() {
+    		var weatherForecast = new WeatherForecast {
+      		Date = DateTime.Parse("2019-08-01"),
+        	TemperatureCelsius = 25,
+        	Summary = "Hot"
+      	};
+
+				string jsonString = Правилният отговор е: [JsonSerializer.Serialize(weatherForecast);] 
+        Console.WriteLine(jsonString);
+      }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

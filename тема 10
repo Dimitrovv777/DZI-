@@ -1,0 +1,310 @@
+Зад.1
+Моля посочете вярното твърдение за съхранени процедури в език My SQL.
+Отг.
+Могат да приемат входни параметри; Могат да връщат изходни резултати.
+
+Зад.2
+Имате пример за създаване на функция:
+Отг.
+CREATE [FUNCTION] [udf]_project_weeks (start_date DATETIME, end_date DATETIME)
+
+[RETURNS] INT
+
+BEGIN
+
+            // тяло на функцията
+
+END
+
+Зад.3
+Имплементирайте код на заявка, която извежда колоните first_name, last_name и job_title от таблица employees и извежда само тези записи със заплата между 20000 и 30000.
+Отг.
+SELECT first_name,last_name ,job_title FROM employees 
+
+WHERE salary BETWEEN 20000 AND 30000;
+
+Зад.4
+Електрическите тротинетки се превърнаха в голям хит през последните няколко години. В големите градове те са все по-предпочитан и удобен начин за транспорт. Компания за отдаване под наем на електрически тротинетки има нужда от създаване на софтуер за дейността си. Ваша отговорност е да изпълните заявки върху базата данни, която съдържа следните таблици:
+
+.cities
+
+.users
+
+.scooters
+
+.rents
+
+Отг.
+USE scooters;
+
+-- Задача 1
+
+SELECT user_id, username, balance FROM `users` 
+
+WHERE city_id IN (SELECT city_id FROM cities WHERE name = 'Varna')
+
+ORDER BY balance DESC LIMIT 1;
+
+
+
+-- Задача 2
+
+SELECT COUNT(*) AS total_rents, c.name AS name 
+
+FROM rents AS r 
+
+INNER JOIN users AS u ON u.user_id = r.user_id 
+
+INNER JOIN cities AS c ON u.city_id=c.city_id 
+
+GROUP BY c.name 
+
+ORDER BY COUNT(*) DESC ,r.rent_id ASC LIMIT 10;
+
+
+
+-- Задача 3
+
+SELECT COUNT(*) AS total_rents, users.username FROM rents 
+
+INNER JOIN users ON rents.user_id = users.user_id
+
+GROUP BY rents.user_id
+
+ORDER BY total_rents DESC, username ASC
+
+LIMIT 5;
+
+
+Зад.5
+Дадена е дефиниция за транзакция.  Поставете липсващите думи в дефиницията.
+Отг.
+Транзакциите гарантират пълнотата и цялостността на базата данни. Всички промени в транзакцията са  [временни]. Промените се съхраняват едва след изпълнението на [COMMIT]. По всяко време всички промени могат да се отменят чрез [ROLLBACK].
+
+Зад.6
+Създайте заявка, която извежда първо име, фамилия и длъжност на служителите, които имат заплата между 20000 и 30000. Използвайте базата данни soft_uni.
+Отг.
+USE soft_uni;
+
+SELECT first_name,last_name ,job_title FROM employees 
+
+WHERE salary BETWEEN 20000 AND 30000;
+
+Зад.7
+Допишете следната заявка, така че да изведе като резултат служителите със заплата по-голяма от 50000 и да ги сортира в низходящ ред.
+
+SELECT first_name, last_name, salary FROM employees
+
+Отг.
+SELECT first_name, last_name, salary FROM employees
+
+WHERE salary > 50000
+
+ORDER BY salary DESC;
+
+Зад.8
+Посочете коя от следните заявки ще изведе всички записи от таблица departments и извежда първите два реда от таблицата.
+Отг.
+SELECT * FROM departments WHERE department_id <=2
+
+Зад.9
+Имате създадена съхранена процедура с параметър usp_select_employees_by_seniority(min_years_at_work INT). Моля да дефинирате заявка за извикване на процедурата, за да може да бъде използвана.
+Отг.
+CALL usp_select_employees_by_seniority(3);
+
+Зад.10
+Имате представена подзаявка за намиране служителите от отдел финанси и извеждане на всички колони от таблицата. Поставете липсващите думи, за да направите работещ код.
+отг.
+SELECT * FROM employees
+[WHERE] department_id [IN]
+
+  (
+
+   SELECT department_id
+    [FROM] departments
+
+    [WHERE] name = 'Finance'  );
+
+Зад.11
+Посочете коя от следните заявки ще изтрие записи от таблица projects, които са с начална дата 2006-01-01.
+Отг.
+DELETE FROM projects WHERE start_date = '2006-01-01';
+
+зад.12
+Във вашата база от данни Soft_uni имате създадена таблица Employees с 500 записа. Необходимо е да добавите нова колона с име осигуровки (osigurovki). Напишете заявка за добавяне на колоната в таблица employees. 
+Отг.
+USE soft_uni;
+
+ALTER TABLE employees
+
+ADD COLUMN osigurovki DECIMAL(8,2);
+
+
+Зад.13
+Посочете какво прави клаузата FULL JOIN.
+Отг.
+Това е връзка между таблици ,която връща записите отговарящи на свързващото условие и неотговарящите записи от лявата и дясната таблица.
+
+Зад.14
+Посочете коя от следните заявки ще изведе фамилия и заплата, като заплатата е в периода 20000 и 22000.
+Отг.
+SELECT `last_name`, `salary`FROM `employees` WHERE `salary` BETWEEN 20000 AND 22000;
+
+Зад.15
+В посочения пример имате заявка за създаване на таблица persons с колони person_id, first_name, passport_id и salary. Моля избирете липсващите думи за всяка колона от таблицата.
+Отг.
+CREATE TABLE persons(
+
+person_id  [INT] PRIMARY KEY,
+
+first_name [VARCHAR(50)],
+
+salary [DECIMAL(8,2)],
+
+passport_id INT UNIQUE,
+
+CONSTRAINT fk_persons_passports FOREIGN KEY(passport_id) REFERENCES passports(passport_id)
+
+);
+
+Зад.16
+Имате синтаксис на транзакция в My SQL. Открийте липсващите думи в кода и го модифицирайте, така че да получите коректно работеща заявка. 
+Отг.
+[START] [TRANSACTION]
+
+[UPDATE] accounts SET balance = balance – withdraw_amount
+
+WHERE id = account
+
+--Transaction logic goes here
+
+IF ROW_COUNT() <> 1 THEN -- Affected rows are different than one.
+
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid account';
+
+            [ROLLBACK];
+
+ELSE
+
+            [COMMIT];
+
+[END IF];
+
+Зад.17
+Имате пример за създаване на процедура:
+Отг.
+CREATE [PROCEDURE] [usp]_withdraw_money (account_id INT, money_amount DECIMAL)
+
+[BEGIN]
+
+  -- Transaction logic goes here.
+
+END
+
+Поставете липсващите думи, така че да се получи правилния код.
+
+зад.18
+Посочете действието на използваната връзка в следната заявка: 
+
+SELECT * FROM employees AS e
+
+ RIGHT OUTER JOIN departments AS d
+
+ ON e.department_id = d.department_id;
+Отг.
+Тази връзка връща записите, отговарящи на свързващото условие и също така несъвпадащите записи от таблица departments.
+
+Зад.19
+Имате следната заявка. Посочете вярното твърдение за получения резултат от агрегиращата използвана функция след нейното изпълнение. 
+
+SELECT e.`department_id`,
+
+  AVG(e.`salary`) AS 'AvgSalary'
+
+FROM `employees` AS e
+
+GROUP BY e.`department_id`;
+Отг.
+Намира средноаритметичната стойност на заплатите на служителите и преименува колоната.
+
+Зад.20
+Моля посочете вярното твърдение за посочените типове данни:
+VARCHAR(M) → текстов тип данни,
+Float → тип данни за реални числа,
+DOUBLE → тип данни за реални числа
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

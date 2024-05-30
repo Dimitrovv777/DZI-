@@ -1,0 +1,652 @@
+Зад.1
+Обяснете какво прави методът Dequeue() на класа Queue?
+Отг.
+премахва и връща елемента от началото на опашката
+
+Зад.2
+Имате имплементация на свързана опашка. При така написания код, посочете верния изход в конзолата и броят на елементите в опашката.
+
+var queue = new LinkedQueue<int>();
+
+                queue.Enqueue(112);
+
+                queue.Enqueue(911);
+
+                queue.Enqueue(166);
+
+                queue.Enqueue(160);
+
+                queue.Enqueue(150);
+
+                queue.Dequeue();
+
+
+
+                Console.WriteLine(string.Join(" ", queue));
+
+                Console.WriteLine("Count = {0}", queue.Count);
+
+Отг.
+911, 166, 160, 150, Count = 4
+
+Зад.3
+Имате дадени следните твърдения: 
+Отг.
+Губим възможността за произволен достъп. Няма начин, по който да индексираме k-тия елемент,
+без да минем през всички k-1 предходни. [Динамична имплементация]
+
+Реализация на списък чрез масив, който автоматично увеличава размера си при нужда.
+[Статична имплементация]
+
+Операциите добавяне и премахване от вътрешността  на списъка изискват пренареждане 
+на елементите. [Статична имплементация]
+
+Операциите добавяне и премахване от вътрешността  на списъка е бърза операция.
+[Динамична имплементация]
+
+Търсенето на елементите в него е сравнително бърза операция. [Статична имплементация]
+
+При често добавяне и премахване (особено при голям брой елементи) това може
+да доведе до ниска производителност. [Статична имплементация]
+
+Можем да поддържаме паметта точно колкото ни трябва като сложността на добавяне си остава.
+[Динамична имплементация]
+
+Елементите съдържат само конкретния обект. [Статична имплементация]
+
+Всеки елемент съдържа променлива и указател, сочещ към следващия елемент. 
+[Динамична имплементация]
+
+Зад.4
+Опишете какво прави методът Push(), принадлежащ на класа Stack?
+Отг.
+Добавя елемент най-горе в стека
+
+Зад.5
+За ваше удобство ще ви бъде предоставен скелет на задачата, който обаче е непълен/неработещ/некоректен. Предоставеният скелет трябва да се приведе в работещ вид.
+
+Имплементация на разтеглив масив ArrayList<T>
+Имплементирайте структура от данни ArrayList<T> която съдържа поредица от елементи от шаблонен тип T. Структурата трябва да пази поредица от елементи в масив. Структурата трябва да има капацитет, който расте двойно, когато се препълни, като в началото винаги има 2 елемента. Масивът трябва да  поддържа следните операции:
+
+·        int Count à дава броя на елементите в структрата
+
+·        T this[int index] à индексатор, който служи за достъпване на елементите по техния индекс (в интервал 0 … Count-1)
+
+·        void Add(T item) à добавя елемент към поредицата и удвоява капацитета на масива, ако е запълнен
+
+·        void RemoveAt(int index) à премахва елемента по неговия индекс (в интервала 0 … Count-1)
+
+·        Метод Get(int index) – връща елемента на търсената позиция
+
+·        Метод Set(int index) – задава стойност на елемента на подадената позиция
+
+·        Имплементиране на функционалност за обхождане на колекцията с foreach цикъл
+Отг.
+class Program
+
+    {
+        static void Main(string[] args)
+
+        {
+
+            CustomList<string> list = new CustomList<string>();
+
+            list.Add("Pesho");
+
+            list.Add("Gosho");
+
+            list.Add("Tosho");
+
+            Console.WriteLine(list.Length);
+
+            Console.WriteLine(list.Capacity);
+
+            Console.WriteLine(list.Get(2));
+
+
+            list.Set(2, "Geri");
+
+            Console.WriteLine(list.Get(2));
+
+            list.RemoveAt(1);
+
+
+
+
+            foreach (var item in list)
+
+            {
+
+                Console.WriteLine(item);
+
+            }
+
+        }
+
+    }
+
+
+class CustomList<T> : IEnumerable<T>
+
+
+    {
+
+        private const int INITIAL_CAPACITY = 2;
+
+
+        private T[] items;
+
+        public int Length { get; set; }
+
+        public int Capacity { get; set; }
+
+
+        public CustomList()
+
+        {
+
+            this.items = new T[INITIAL_CAPACITY];
+
+            this.Capacity = INITIAL_CAPACITY;
+
+        }
+
+
+
+
+        public T this[int index]
+
+        {
+
+            get
+
+            {
+
+                CheckIndexOutsideBounds(index);
+
+
+                return this.items[index];
+            }
+
+            set
+
+            {
+
+                CheckIndexOutsideBounds(index);
+
+                this.items[index] = value;
+
+            }
+
+        }
+
+        public void Add(T element)
+
+        { 
+
+            if (this.Length == this.Capacity)
+{
+
+            this.Capacity *= 2;
+
+            T[] temp = new T[this.Capacity];
+
+            for (int i = 0; i < items.Length; i++)
+
+            {
+
+                temp[i] = items[i];
+
+
+
+            }
+
+            temp[Length] = element;
+
+            items = temp;
+
+            this.Length++;
+
+        }
+
+else
+
+
+{
+
+            items[this.Length] = element;
+
+            this.Length++;
+
+        }
+
+        }
+
+
+
+        public T Get(int index)
+
+        {
+
+            CheckIndexOutsideBounds(index);
+
+            return this.items[index];
+
+        }
+
+
+
+
+        public void Set(int index, T element)
+
+        {
+
+
+            CheckIndexOutsideBounds(index);
+            this.items[index] = element;
+
+
+        }
+
+
+
+
+
+
+
+        public void RemoveAt(int index)
+
+        {
+
+            CheckIndexOutsideBounds(index);
+
+
+
+
+
+
+
+            for (int i = index; i < items.Length - 1; i++)
+
+            {
+
+                items[i] = items[i + 1];
+
+            }
+
+
+
+            this.Length--;
+
+        }
+
+
+
+
+
+        private void CheckIndexOutsideBounds(int index)
+
+        {
+            if (index < 0 || index >= this.Length)
+
+            {
+
+                new IndexOutOfRangeException();
+
+            }
+
+        }
+
+
+
+        public IEnumerator<T> GetEnumerator()
+
+        {
+
+            foreach (var item in items )
+            {
+                yield return item;
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+        IEnumerator IEnumerable.GetEnumerator()
+
+        {
+
+            return this.GetEnumerator();
+
+      
+        }
+
+
+
+    }
+
+Зад.6
+Обяснете какво прави методът Enqueue(T) , принадлежащ на класа Queue?
+Отг.
+Добавя елемент в края на опашката
+
+Зад.7
+Опишете какво прави методът Pop(), принадлежащ на класа Stack?
+Отг.
+премахва най-горния елемент в стека
+
+Зад.8
+Посочете кои са по-важните свойства на алгоритмите?
+Отг.
+всичко изброено
+
+Зад.9
+Посочете кой от следните примери показва добавяне на елемент към стек в C#, който е създаден по следния начин: (забележете че се създава нова структура от данни, без да са добавени нови елемнти в нея):
+
+Stack s = new Stack();
+Отг.
+s.Push(325);
+
+Зад.10
+Опишете какво прави методът Peek() от класа Stack?
+Отг.
+връща най-горния елемент в стека, без да го премахва
+
+Зад.11
+Имате даден следния код:
+
+List<int> list = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+
+            int currVal = list[0];
+            int currCount = 1;
+            int maxCount = 1;
+            int maxValue = currVal;
+
+            for (int i = 1; i < list.Count; i++)
+            {
+                if(currVal == list[i])
+                {
+                    currCount++;
+                    if(currCount > maxCount)
+                    {
+                        maxCount = currCount;
+                        maxValue = currVal;
+                    }
+                }
+                else
+                {
+                    currCount = 1;
+                    currVal = list[i];
+                }
+            }
+
+            Console.WriteLine($"{maxValue} -> {maxCount}");
+
+Отг.
+Свържете към намирането на коя от следните
+подредици съответства: [най‑дълга подредица от равни числа]
+
+Зад.12
+Отг.
+1-IComparable
+2-elements.Length
+3-elements[index]
+4-0
+5-return 
+
+зад.13
+Отговорете кое от следните твърдения е вярно за разтеглив масив?
+Отг.
+структура от данни, която е масив по своята същност, но 
+за разлика от обикновеният масив може да променя размера си
+
+Зад.14
+Имате даден следния програмен фрагмент:
+ИМА СНИМКА!!!
+Този фрагмент е част от имплементацията на линейната структура
+от данни стек - премахване на елемент от стек. В кода има грешка! 
+Вашата задача е да откриете грешката, 
+да обясните каква е тя и по какъв начин ще я поправите!
+Отг.
+Грешката е ,че не може методът Pop да премахва елемент по неговия индекс ,защото 
+той по презумпция трябва да маха най-горния елемент от стека. Ето решение:
+
+T element = this.items[this.Count];
+
+T[] temp = new T[count];
+
+Зад.15
+Дайте пример с C# код, за метод който да сортира  елементите от списъка
+List<int> list = new List<int>() { 12, 8, 10, 2, 9, 6, 1};
+посредством алгоритъма за сортиране  чрез метода на мехурчето.
+Отг.
+List<int> list = new List<int>() { 12, 8, 10, 2, 9, 6, 1};
+
+for(int i = 0; i < list.Count - 1 ; i++)
+
+{
+
+for (int j = 0 ; j < list.Count - 1; j++)
+
+{
+
+if(list[j] > list[j+1])
+
+{
+
+int temp = list[j+1];
+
+list[j+1] = list[j];
+
+list[j] = temp;
+
+}
+
+}
+
+}
+
+Зад.16
+Посочете вярното за следното твърдение:
+Отг.
+[Enqueue] – добавя елемент в края на опашката
+
+Зад.17
+Даден е следния програмен фрагмент:
+
+ class CustomStack<T>
+    {
+        private class Node<T>
+        {
+            public T Value { get; set; }
+            public Node<T> PrevNode { get; private set; }
+
+            public Node(T value, Node<T> prev = null)
+            {
+                this.Value = value;
+                this.PrevNode = prev;
+            }
+        }
+
+        private Node<T> firstNode;
+        public int Count { get; private set; }
+
+        public void Push(T element)
+        {
+            
+        }
+}
+
+Допишете метода Push(T element) който трябва да добави елемент в стека. Обърнете 
+внимание на това каква имплементация на списъчната структура е използвана!
+Отг.
+public void Push(T element)
+        {
+            this.firstNode = new Node<T>(element, this.firstNode);
+            this.Count++;
+        }
+
+Зад.18
+Даден е следния програмен фрагмент:
+
+class CustomList
+    {
+        private class Node
+        {
+            private object element;
+            private Node next;
+            public Node(object element, Node prevNode)
+            {
+                this.Element = element;
+                prevNode.Next = this;
+            }
+            public Node(object element)
+            {
+                this.Element = element;
+            }
+            public object Element
+            {
+                get { return this.element; }
+                set { this.element = value; }
+            }
+            public Node Next
+            {
+                get { return this.next; }
+                set { this.next = value; }
+            }
+        }
+        //полета
+        //глава(начало) на списъка
+        private Node head;
+        //опашка(край) на списъка
+        private Node tail;
+        //броят на елементите в свързания списък
+        private int count;
+        public int Count
+        {
+            get { return this.count; }
+            private set { this.count = value; }
+        }
+        public void Add(object element)
+        {
+           
+        }
+
+Допишете метода Add(object element) който трябва да добави елемент в списъка.
+Обърнете внимание на това каква имплементация на списъчната структура е
+използвана - динамична или статична)!
+Отг.
+class CustomList
+    {
+        private class Node
+        {
+            private object element;
+            private Node next;
+            public Node(object element, Node prevNode)
+            {
+                this.Element = element;
+                prevNode.Next = this;
+            }
+            public Node(object element)
+            {
+                this.Element = element;
+            }
+            public object Element
+            {
+                get { return this.element; }
+                set { this.element = value; }
+            }
+            public Node Next
+            {
+                get { return this.next; }
+                set { this.next = value; }
+            }
+        }
+        //полета
+        //глава(начало) на списъка
+        private Node head;
+        //опашка(край) на списъка
+        private Node tail;
+        //броят на елементите в свързания списък
+        private int count;
+        public int Count
+        {
+            get { return this.count; }
+            private set { this.count = value; }
+        }
+        public void Add(object element)
+        {
+
+          Node newNode = new Node(element);
+
+          if (head == null)
+
+{
+
+ head = newNode;
+
+tail = newNode;
+
+}
+
+else
+
+{
+
+tail.Next() = newNode;
+
+tail = newNode;
+
+}
+           count++;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

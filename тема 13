@@ -1,0 +1,706 @@
+Зад.1
+Посочете кое от следните е валиден начин за изпращане на SELECT заявка в C#.
+Отг.
+SqlCommand command = new SqlCommand( "SELECT COUNT(*) FROM Employees", dbCon);
+
+Зад.2
+Обяснете действието на следния фрагмент:
+
+	toDoList.CreatedAt = DateTime.Now;
+  _context.Add(toDoList);
+  await _context.SaveChangesAsync();
+Отг.
+1. Задава стойностta на свойството CreatedAt на обекта toDoList да е равно на текущата дата и време
+
+2. Добавя обекта toDoList в контекста на базата данни и се подготвя за запизване
+
+3. Запазва промените по контекста и базадата данни чрез изпълняване на асинхронна операция и чрез "await" се изчаква изпълнението на реда преди да продължи изпълнението на програмата 
+
+Зад.3
+Посочете какво означава абривиатурата ORM:
+Отг.
+Object Relational Mapping
+
+Зад.4
+Посочете какво наричаме „магически стойности" в програмирането.
+Отг.
+низове или числени стойности, които са поставени директно в кода
+
+Зад.5
+Посочете как се нарича типа в EntityFrameworkCore, който съдържа в себе си записите от дадена таблица от база данни.
+Отг.
+ DbSet
+
+Зад.6
+Демонстрирайте създаването на таблици по CodeFirst подхода за следния Context клас:
+
+Създайте таблици за следните класове: Author, Book, Category, Order
+Примете, че необходимите using директиви са предварително поставени.
+
+public class ApplicationDbContext : DbContext
+
+{
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+
+            : base(options)
+
+        {
+
+        }
+
+        // your code goes here
+
+}
+
+Отг.
+public class ApplicationDbContext : DbContext
+
+{
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+
+            : base(options)
+
+        {
+
+        }
+
+        DbSet<Author> Authors {get;set;}
+
+        DbSet<Book> Books {get;set;}
+
+        DbSet<Category> Categories {get;set;}
+
+        DbSet<Order> Orders {get;set;}
+
+}
+
+Зад.7
+Посочете кое от следните НЕ Е ORM система.
+Отг.
+Microsoft SQL Server
+
+Зад.8
+Посочете кое от следните е ORM система.
+Отг.
+EntityFrameworkCore, Microsoft SQL Serve
+
+Зад.9
+Демонстрирайте създаване на клас, който съответства на следната таблица в БД:
+Отг.
+class Book {
+
+[public int Id { get; set; }]
+
+[public string Title { get; set; }]
+
+[public string Author { get; set; }]
+
+[public double Price { get; set; }]
+
+[public int Quantity { get; set; }]
+
+}
+
+
+Зад.10 - за 20 точко !!!
+
+Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+
+Условие:
+
+Разполагате със следната схема. Създайте класове, които да ѝ съответстват и да са подходящи
+
+за работа с ORM система.
+Отг.
+class Cities
+
+    {
+
+        private string name;
+
+        public Int16 CityId { get; set; }
+
+        public string Name
+
+        {
+
+            get { return Name; }
+
+            set 
+
+            {
+
+                if (name.Length <= 50)
+
+                {
+
+                    name = value;
+
+                }
+
+            }
+
+        }
+
+        public Int16 CountryId { get; set; }
+
+        public DateTime LastUpdate { get; set; }
+
+    }
+
+    class Address
+
+    {
+
+        private string address;
+
+        private string address2;
+
+        private string district;
+
+        private string postalCode;
+
+        private string phone;
+
+        private string location;
+
+        public Int16 AddressId { get; set; }
+
+        public string _Address
+
+        {
+
+            get { return address; }
+
+            set
+
+            {
+
+                if (address.Length <= 50)
+
+                {
+
+                    address = value;
+
+                }
+
+            }
+
+        }
+
+        public string Address2
+
+        {
+
+            get { return address2; }
+
+            set
+
+            {
+
+                if (address2.Length <= 50)
+
+                {
+
+                    address2 = value;
+
+                }
+
+            }
+
+        }
+
+        public string District
+
+        {
+
+            get { return district; }
+
+            set
+
+            {
+
+                if (district.Length <= 20)
+
+                {
+
+                    district = value;
+
+                }
+
+            }
+
+        }
+
+        public Int16 CityId { get; set; }
+
+        public string PostalCode
+
+        {
+
+            get { return postalCode; }
+
+            set
+
+            {
+
+                if (postalCode.Length <= 10)
+
+                {
+
+                    postalCode = value;
+
+                }
+
+            }
+
+        }
+
+        public string Phone
+
+        {
+
+            get { return phone; }
+
+            set
+
+            {
+
+                if (phone.Length <= 20)
+
+                {
+
+                    phone = value;
+
+                }
+
+            }
+
+        }
+
+        public string Location { get; set; }
+
+        public DateTime LastUpdate { get; set; }
+
+    }
+
+    class Country
+
+    {
+
+        private string country;
+
+
+
+        public Int16 CountryId { get; set; }
+
+        public string _Country
+
+        {
+
+            get { return country; }
+
+            set
+
+            {
+
+                if (country.Length <= 50)
+
+                {
+
+                    country = value;
+
+                }
+
+            }
+
+        }
+
+        public DateTime LastUpdate { get; set; }
+
+
+
+    }
+
+Зад.11
+Обяснете защо примерния програмен фрагмент няма да доведе до изтриване на данни от базата данни:
+
+public void DeleteList(ToDoList toDoList)
+
+{
+
+    _context.ToDoList.Remove(toDoList);
+
+}
+Отг.
+Защото липсва редът за запазването на промените в базата данни.
+
+Зад.12
+Демонстрирайте създаване на клас, който съответства на следната таблица в БД:
+Отг.
+class Person {
+
+[public int Id { get; set; }]
+
+[public string FirstName { get; set; }]
+
+[public string MiddleName { get; set; }]
+
+[public string LastName { get; set; }]
+
+[public DateTime BirthDate { get; set; }]
+
+[public int CityId { get; set; }]
+
+}
+
+Зад.13
+Обяснете предназначението на модела в MVC и ASP.NET Core.
+Отг.
+Моделът служи за обработка и манипулация на данните спрямо приложената бизнес логика. Също чрез него се достъпва базата данни.
+
+Зад.14
+Демонстрирайте създаване на ViewModel за ToDoList със следните полета:
+
+Id
+
+Title (заглавие, максимум 50 знака, задължително)
+
+Description (описание, максимум 255 знака, не е задължително)
+Отг.
+class ToDoList
+
+    {
+
+        private string title;
+
+
+
+        private string description;
+
+
+
+
+
+
+
+        public int Id { get; set; }
+
+
+
+        public string Title
+
+
+
+        {
+
+
+
+            get { return title; }
+
+
+
+            set
+
+
+
+            {
+
+
+
+                if (title.Length <= 50 && title != null)
+
+                {
+
+                    title = value;
+
+                }
+
+
+
+            }
+
+
+
+        }
+
+        public string Description
+
+
+
+        {
+
+
+
+            get { return description; }
+
+
+
+            set
+
+            {
+
+                if (title != null)
+
+                {
+
+                    if (title.Length <= 250)
+
+                    {
+
+                        description = value;
+
+                    }
+
+                }
+
+                else
+
+                {
+
+                    description = value;
+
+                }
+
+   
+
+            }
+
+
+
+        }
+
+    }
+
+
+Зад.15
+Какво представлява ViewModel?
+Отг.
+Всички изброени са верни.
+
+Зад.16
+Обяснете предназначението на контролера в MVC и ASP.NET Core.
+Отг.
+Контролерът служи за връзка между изгледа и модела като приема и обработва заявките от единия към другия. Той също не съдържа никаква бизнес логика и може да служи за представянето на данните на подходящо View.
+
+Зад.17 - ЗА 20 ТОЧКИ !!!
+Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+
+Условие:
+
+Разполагате със следната схема. Създайте класове, които да ѝ съответстват и да са подходящи
+
+за работа с ORM система. Запишете класовете един под друг в отговора.
+
+Отг.
+class Cities
+
+    {
+
+        public int CityId { get; set; }
+
+        public string Name { get; set; }
+
+    }
+
+    class Scooters
+
+    {
+
+        public int ScooterId { get; set; }
+
+        public string Model { get; set; }
+
+        public string GpsPosition { get; set; }
+
+        public bool isTaken { get; set; }
+
+    }
+
+    class Users
+
+    {
+
+        private string username;
+
+        public int UserId { get; set; }
+
+        public string Username
+
+        {
+
+            get { return username; }
+
+            set
+
+            {
+
+                if (username.Length <= 50)
+
+                {
+
+
+
+                    username = value;
+
+
+
+                }
+
+            }
+
+        }
+
+        public string Password { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public Decimal Balance { get; set; }
+
+        public int CityId { get; set; }
+
+        public DateTime RegisterDate { get; set; }
+
+    }
+
+    class Rents
+
+    {
+
+        public int RentId { get; set; }
+
+        public int UserId { get; set; }
+
+        public int ScooterId { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public bool isCompleted { get; set; }
+
+    }
+
+Зад.18
+Посочете кой от следните примери е нарушение на добрите практики при използването на WindowsForms като графичен потребителски интерфейс за приложение.
+Отг.
+имената на контролите от форма са оставени по подразбиране на label1, button1 и т.н.
+
+Зад.19
+Обяснете действието на следния фрагмент:
+
+toDoList.ModifiedAt = DateTime.Now;
+_context.Update(toDoList);
+await _context.SaveChangesAsync();
+Отг.
+1. Задава стойност на свойството ModifiedAt ,на обекта toDoList, да е равна на сегашните дата и час.
+
+2. Променя информацията за обекта в контекста на базата данни.
+
+3. Запазва промените в базата данни чрез асинхронен метод и се използва "await" ,за да се подсигури извършването на промяната преди да продължи работата на прогрмата.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

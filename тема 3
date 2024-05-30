@@ -1,0 +1,597 @@
+Зад.1
+Дефиниране на клас BankAccount
+Отг.
+
+
+     public class BankAccount
+
+    {
+
+        private int id;
+
+        private decimal balance;
+
+
+        public BankAccount(int id, decimal balance)
+
+        {
+
+            Id = id;
+
+            Balance = balance;
+
+        }
+
+
+        public int Id
+
+        {
+
+            get { return id; }
+
+            set { id = value; }
+
+        }
+
+        public decimal Balance
+
+        {
+
+            get { return balance; }
+
+            set { balance = value; }
+
+        }
+
+
+        public void Deposit(decimal amount)
+
+        {
+
+            if(amount < 0)
+
+            {
+
+                Console.WriteLine("Amount must be positive number!");
+
+            }
+
+            else
+
+            {
+
+                this.Balance += amount;
+
+            }
+
+        }
+
+
+        public void Withdraw(decimal amount)
+
+        {
+
+            if(this.Balance < amount)
+
+            {
+
+                Console.WriteLine("Insufficient Balance!");
+
+            }
+
+            else
+
+            {
+
+                this.Balance -= amount;
+
+            }
+
+        }
+
+
+        public override string ToString()
+
+        {
+
+            return $"Account {this.Id}, balance {this.Balance}";
+
+        }
+
+    }
+
+Зад.2
+Дайте примерен код за метод написан на C#, който да върне най-голямото реално число от даден масив.
+Отг.
+static double MaxNumber(double[] array)
+        {
+            double max = array[0];
+            for (int i = 1; i < array.Length; i++)
+            {
+                if(array[i]> max)
+                {
+                    max = array[i];
+                }
+            }
+
+            return max;
+        }
+
+Зад.3
+Демонстрирайте как бихте използвали статичен член от даден клас в C#.
+
+Имате статичен клас (например Mathematics), който има статичен метод (Add) за събиране на две числа. 
+
+Как бихте извикали този статичен метод в класа Program.cs, за да проверите 
+колко е сбора на числата 5 и 6 и да отпечатате стойността на конзолата?
+Отг.
+Console.WriteLine(Mathematics.Add(5, 6));
+
+Зад.4
+Даден е следния програмен фрагмент. Открийте грешките и запишете правилния код.
+public Dog
+    {
+        private string name;
+        private int age;
+
+        private Dog(string, int name)
+        {
+            Name = name;
+            Age = age;
+        }
+
+        public string Name
+        {
+            get { return Name; }
+            private set { name = value; }
+        }
+        public int age
+        {
+            get { return age; }
+            private set { age = value; }
+        }
+    }
+Отг.
+public class Dog
+    {
+        private string name;
+        private int age;
+
+        public Dog(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+
+        public string Name
+        {
+            get { return name; }
+            private set { name = value; }
+        }
+        public int Age
+        {
+            get { return age; } 
+            private set { age = value; }
+        }
+
+    }
+
+Зад.5
+Дайте примерен код на C# за метод само за четене на стойността на едно свойство.
+(Например свойството Age). Спазвайте правилната енкапсулация на данните!
+Отг.
+public int Age
+        {
+            get { return age; }
+        }
+
+Зад.6
+Посочете правилната дефиниция по понятията 
+класове, атрибути и поведение в ООП. Изберете от падащите менюта:
+Отг.
+Класът дефинира [характеристиките и поведението на даден обект.].
+Атрибутите на класа се [дефинират като собствени променливи в тялото му.].
+Поведението на обектите се [моделира чрез дефиниция на методи в класовете].
+Атрибутите на класа се наричат още [член променливи].
+
+Зад.7
+Дайте пример за клас в C#. Нека този клас моделира реалния обект
+книга и притежава полетата и свойствата: име, автор, брой страници.
+Отг.
+public class Book
+    {
+        private string name;        
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        private string author;
+
+        public string Author
+        {
+            get { return author; }
+            set { author = value; }
+        }
+
+        private int pages;
+
+        public int Pages
+        {
+            get { return pages; }
+            set { pages = value; }
+        }
+    }
+
+Зад.8
+В C# като статични могат да бъдат декларирани: 
+Отг.
+Полета, методи, свойства, конструктори и класове.
+
+Зад.9
+Открийте грешката в кода и я поправете, така че програмата да работи правилно:
+
+public class Dog
+    {
+        private int count;
+        public Dog()
+        {
+            count++;
+        }
+
+        public int Count { get => count; }
+    }
+
+public class Program
+    {
+        static void Main(string[] args)
+        {
+            Dog dog = new Dog();
+            Console.WriteLine(dog.Count);
+        }
+}
+
+Отг.
+public class Dog
+    {
+        private static int count;
+        public Dog()
+        {
+            count++;
+        }
+
+        public static int Count { get => count; }
+    }
+
+public class Program
+    {
+        static void Main(string[] args)
+        {
+            Dog dog = new Dog();
+            Console.WriteLine(Dog.Count);
+        }
+}
+
+Зад.10
+Дадени са следните фрагменти от код на C#. От вас се очаква да различавате
+кое от посочените е конструктор, кое е метод, кое е свойство и кое поле.
+Срещу всяка снимка има поле, от което трябва да изберете вярното:
+Отг.
+[поле]
+[конструктор]
+[свойство]
+[метод]
+
+Зад.11
+Имате за задача да създадете училищна система за записване и отписване на ученици. За целта трябва да създадете някои класове, методи и свойства.
+
+За ваше удобство ще ви бъде предоставен скелет на задачата, който обаче е непълен/неработещ/некоректен. Предоставеният скелет трябва да се приведе в работещ вид.
+
+Клас School
+
+Създайте клас School:
+
+·        Класът трябва да притежава поле за съхранение на записаните ученици
+
+·        Конструктор, който да получава като параметър името на училището
+
+·        Свойство Name, което да пази името на училището
+
+·        Метод EnrollStudent(Student student) – методът трябва да има функционалност да записва ученици в даденото училище
+
+·        Метод UnenrollStudent(int id) – методът трябва да може да премахва ученик от системата по подадено id на ученика. Ако няма записани ученици в системата на училището или ако такова ID не съществува в системата отпечатайте: “No such Id in our database!”
+
+ 
+
+Клас Student
+
+·        Класът Student трябва да има поле, което да пази кой номер по ред ученик е създаден.
+
+·        Свойство, което да пази пълното име на ученика – конкатенация на първо име и фамилия на ученика, които получаваме през конструктора като параметри
+
+·        Конструктор, който да получава първо име и фамилия на ученика.
+
+·        Също така конструктора трябва да може да задава стойност за Id на ученика, като всеки път е с единица по-голяма от Id – то на предишния ученик
+
+·        Презаписан ToString() метод, който да връща информация за ученика във формат:
+
+„Student ID: {StudentId} Name: {FullName}“
+
+ 
+
+Вход/Изход
+
+Като вход на първия ред ще получите името на училището. На всеки следващ ред ще получавате команда Enroll или Unenroll, която съответно записва/отписва даден ученик.
+
+·        Когато получите команда от вида: Enroll Ivan Ivanov трябва да запишете този ученик в системата на училището и да отпечатате на конзолата: „Student ID: {StudentId} Name: {FullName} was successfully enrolled!“.
+
+·        Когато получите команда от вида: Unenroll 5, където 5 ще бъде Id-то на ученика, който трябва да бъде отписан от системата, вашата програма трябва да премахва този ученик от списъка на училището и да отпечата на конзолата: „Student ID: {StudentId} Name: {FullName} was successfully unenrolled!“. Ако няма такова ID в системата отпечатайте: “No such Id in our database!”
+
+·        Командата Print трябва да отпечатва информация за училището. Във вида:
+
+{SchoolName}
+
+{Student1}
+
+{Student2}
+
+…
+Отг.
+Program.cs
+
+static void Main(string[] args)
+        {
+            string schoolName = Console.ReadLine();
+            School school = new School(schoolName);
+ 
+            string[] command = Console.ReadLine().Split();
+            Student student = null;
+ 
+            while (command[0] != "End")
+            {
+                switch (command[0])
+                {
+                    case "Enroll":
+                        student = new Student(command[1], command[2]);
+                          school.EnrollStudent(student);
+                        Console.WriteLine($"{student} was successfully enrolled!");
+                        break;
+                    case "Unenroll":
+                        Student stdnt = school.UnenrollStudent(int.Parse(command[1]));
+                        if (stdnt != null)
+                        {
+                              Console.WriteLine($"{stdnt} was successfully unenrolled!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No such Id in our database!");
+                        }
+                        break;
+                    case "Print":
+                          Console.WriteLine(school);
+                        break;
+                }
+ 
+                command = Console.ReadLine().Split();
+            }
+        }
+
+Student.cs
+{
+        private static int id;
+        private int studentId;
+        private string fullName;
+        public Student(string firstName, string lastName)
+        {
+            id++;
+            this.studentId = id;//1т
+            FullName = $"{firstName} {lastName}";//1т
+        }
+
+        public int StudentId//2т
+        {
+            get { return studentId; }
+        }
+        public string FullName
+        {
+            get { return fullName; }
+            private set { fullName = value; }
+        }
+       
+
+        public override string ToString()
+        {
+            return $"Student ID: {this.StudentId} Name: {this.FullName}";//2т
+        }
+    }
+
+School.cs
+{
+        private List<Student> students;
+        private string name;
+        public School(string name)
+        {
+            this.Name = name;
+            this.students = new List<Student>();// 2т
+        }
+        public string Name
+        {
+            get { return name; } //2т
+            private set { name = value; }
+        }
+
+        public void EnrollStudent(Student student)
+        {
+            this.students.Add(student);//2т
+        }
+
+        public Student UnenrollStudent(int id)
+        {
+            if(this.students.Count <= 0 || id >= this.students.Count)
+            {
+                return null;
+            }
+
+            Student student = this.students.Where(s => s.StudentId.Equals(id)).First();//2т
+            if (student != null)
+            {
+                this.students.Remove(student);
+            }
+
+            return student;//1т
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"{this.Name}:");
+            foreach (var student in this.students)
+            {
+                sb.AppendLine();
+                sb.Append(student.ToString());
+            }
+            return sb.ToString();//1т
+        }
+    }
+
+Зад.12
+Посочете кое от изброените се отнася за конструкторите в C#:
+Отг.
+ Конструкторът е специален метод на класа, чрез който инициализираме обекти., 
+Конструкторът се извиква с ключовата дума new., 
+Конструкторът няма тип на връщаната стойност., 
+Конструктор може да бъде с или без параметри.
+
+Зад.13
+Петя е начинаещ програмист и е написала прост клас на C#, но е забравила
+да спази един много важен принцип в обектно-ориентираното програмиране 
+- а именно спазването на правилната енкапсулация на данните! За да
+докажете, че различавате модификаторите за достъп до елементите в даден 
+клас, попълнете правилните модификатори в дадения код!
+Отг.
+[public] class Turtle
+    {
+        [private] string name;
+        [private]  int age;
+        [public] Turtle(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+        [public] string Name
+        {
+            get { return name; }
+            [private] set { name = value; }
+        }
+        [public] int Age
+        {
+            get { return age; }
+            [private] set { age = value; }
+        }
+
+        [public] void MakeTrick()
+        {
+            Console.WriteLine("I do a triple somersault!");
+        }
+    }
+
+Зад.14
+Дефинирайте за кого ще е видимо поле/метод в C#, ако то е с модификатор за достъп public?
+Отг.
+може да бъде достъпен от всеки друг клас, независимо дали е от текущия проект
+
+Зад.15
+Имате следния пример: клас Circle е производен на клас Figure. По кой от 
+следните начини е възможно да се декларират обекти?
+Отг.
+Figure fig = new Figure();,
+Figure fig = new Circle();
+,
+Circle fig = new Circle();
+
+Зад.16
+Дефинирайте за кого ще е видимо поле/метод в C#, ако то е с модификатор за достъп private?
+Отг.
+само за класа, в който се намира
+
+Зад.17
+Посочете на коя от картинките методът е правилно деклариран и работещ.
+Отг.
+static string NumberSign(double number)
+{
+    If (number < 0)
+    {
+       return "negative";
+    }
+    else if (number > 0)
+    {
+        return"positive"
+    }
+    else
+    {
+        return"zero"
+    }
+
+Зад.18
+Обяснете какво правят т.нар getters в C#:
+Отг.
+метод за четене на стойността на едно свойство
+
+Зад.19
+Дайте пример за клас в C#. Нека този клас моделира реалния обект
+училище(School) и притежава полетата (fields) и свойствата (properties):
+име (name), адрес (address), информация (information).
+Отг.
+public class School
+    {
+        private string name;
+        private string address;
+        private string information;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
+        public string Information
+        {
+            get { return information; }
+            set { information = value; }
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

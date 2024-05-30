@@ -1,0 +1,906 @@
+Зад.1
+Дефинирайте понятието наследяване от обектно-ориентираното 
+програмиране като попълните липсващите думи в текста.
+Отг.
+Наследяването е [основен принцип] от обектно-ориентираното
+програми­ране. То позволява на един клас да "наследява" [поведение и характе­ристики] 
+от друг, по-общ клас. 
+В .NET и други модерни езици за програмиране един клас може да наследи [само един друг клас].
+Класът, който [дава ] своите членове на [дъщерния] си клас се нарича [базов] 
+клас. А класът, който [получава] членове от [своя базов клас] - [подклас].
+
+Зад.2
+Посочете по какъв начин бихте декларирали шаблонен клас (с примерно име  MyClass) в C#.
+Отг.
+ class MyClass<T> 
+{ 
+
+}
+
+Зад.3
+Дайте пример за шаблонен клас, който да се казва Кутия (Box) и тази кутия 
+да може да съхраняват всякакви елементи. В този клас създайте и един 
+метод (Add), който да добавя елемент в края на редицата.
+Отг.
+class Box<T>
+    {
+        private List<T> items;
+
+        public Box()
+        {
+            items = new List<T>();  
+        }
+        public void Add(T item)
+        {
+            this.items.Add(item);
+        }
+    }
+
+Зад.4
+Имате следния код:
+
+        public List<int> CreateList(int item, int count)
+        {
+            List<int> list = new List<int>();
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(item);
+            }
+        }
+
+ Модифицирайте кода,така че методът да работи с всякакъв тип данни.
+Отг.
+public List<T> CreateList<T>(T item, int count)
+        {
+            List<T> list = new List<T>();
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(item);
+            }
+            return list;
+        }
+
+Зад.5
+Посочете видовете полиморфизъм в .NET.
+Отг.
+Полиморфизъм по време на компилиране., 
+Полиморфизъм по време на изпълнение. 
+
+Зад.6
+Обяснете основните разлики между презареждане и презаписване на методи.
+Отг.
+Методи с едно и също име, но различни сигнатури. [Презареждане на методи]
+Може да се случи в същия клас или в негов подклас. [Презареждане на методи]
+Може да се случи в подкласовете. [Презаписване на методи]
+Трябва да има същия тип на връщана стойност. [Презаписване на методи]
+При компилиране, според подадените параметри компилатора определя кой метод точно ще изпълни.
+[Презареждане на методи]
+Модификатора за достъп не може да бъде по-ограничаващ. [Презаписване на методи]
+
+Зад.7
+Дефинирайте понятието полиморфизъм в обектно-ориентираното
+програмиране като попълните липсващите думи в текста.
+Отг.
+Полиморфизмът в обектно-ориентираното програмиране представлява 
+свойството на обектите от един и същи [тип] да имат един и същи 
+[интерфейс], но с [различна реализация] на този [интерфейс]. „Един 
+[интерфейс], [множество от различни реализации]“. Чрез полиморфизма се 
+постига по-голяма [абстракция ] и по-лесно [повторно използване] на кода.
+
+Зад.8
+Дайте пример чрез код на C# за това как и къде бихте използвали презаписване на методи. 
+
+Например имате класовете Animal и Dog. Имате и един единствен метод MakeTrick(), който
+трябва да отпечатва на конзолата за всички животни, че по подразбиране не могат да правят никакъв 
+трик ("No trick!"). Само и единствено кучето умее трика да подава лапа ("Give a paw!"). 
+
+Реализирайте примера чрез код на C#.
+Отг.
+ class Animal
+{
+        public virtual void MakeTrick()
+        {
+            Console.WriteLine("No trick...");
+        }
+}
+class Dog : Animal
+{
+        public override void MakeTrick()
+        {
+            Console.WriteLine("Give a paw...");
+        }
+}
+
+Зад.9
+Открийте разликите между клас и интерфейс. Кои от изброените твърдения 
+се отнасят за класовете в C#, кои за интерфейсите?
+Отг.
+Има както дефиниция, така и реализация. [Клас]
+
+Има само дефиниция. [Интерфейс]
+
+Не може да бъде инстанциран. [Интерфейс]
+
+Може да бъде инстанциран. [Клас]
+
+Може да съдържа членове, методи, заедно с дефиниция и реализация. [Клас]
+
+Набор от дефиниции, които трябва да се приложат. [Интерфейс]
+
+Зад.10
+Свържете кои от характеристиките се отнасят за абстрактните класове, кои за интерфейсите.
+Отг.
+Може да наследи само един абстрактен клас. [Абстракция]
+
+Могат да предоставят целия код и/или само детайлите, които трябва да се презапишат. [Абстракция]
+
+Може да имплементира няколко интерфейса. [И за двете ]
+
+Може да съдържа модификатори за достъп. [Абстракция]
+
+Не може да предоставя никакъв код, предоставя само описание. [Интерфейси]                        
+
+Нямат модификатори за достъп. Всичко е публично по подразбиране. [Интерфейси]
+
+Зад.11
+Открийте липсващите думи в текста:
+Отг.
+Възможността референция към [базов клас ] да сочи обект както от базовия, 
+така и обект от някой от производните класове е в основата на реализацията 
+на [полиморфизма ] в езика C#.
+
+Кои от следните примери потвърждават това правило, ако имате следната
+йерархия class Cat : class Animal ?
+
+Cat cat  = new Animal(); [не]
+
+Animal animal = new Animal(); [да]
+
+Animal animal = new Cat(); [да]
+
+Зад.12
+Посочете кое от изброените твърдение е вярно за интерфейсите в C#.
+Отг.
+Предоставя договор, определящ как да се създаде обект, без да се интересува от спецификата на това
+как обекта ще прави нещата.,
+Това е референтен тип и включва само абстрактни членове като събития, методи, свойства и т.н. и няма 
+реализации за нито един от своите членове.
+
+Зад.13
+Свържете кои от характеристиките се отнасят за абстракцията, кои за енкапсулацията.
+Отг.
+Получава се чрез модификаторите за достъп (private, public, protected,
+internal) [Енкапсулация]
+
+Постига се чрез интерфейси и абстрактни класове. [Абстракция]
+
+Процес на скриване на подробностите на имплементацията и показване само
+на функционалностите към потребителя. [Абстракция]
+
+Използва се, за  да скрива кода и информацията в един компонент, за да 
+я защити от външния свят. [Енкапсулация]
+
+Зад.14
+Създайте следната йерархия от класове и интерфейси.
+
+За ваше удобство ще ви бъде предоставен скелет на задачата, който обаче е непълен/неработещ/некоректен. Предоставеният скелет трябва да се приведе в работещ вид.
+
+Интерфейс IMakeNoise
+·        Този интерфейс трябва да съдържа сигнатурата на метод string MakeNoise()
+
+Интерфейс IMakeTrick
+·        Този интерфейс трябва да съдържа сигнатурата на метод string MakeTrick()
+
+Интерфейс IAnimal
+·        Този клас трябва да имплементира IMakeNoise и IMakeTrick.
+
+·        Интерфейсът трябва да съдържа свойство Type за типа на животното
+
+·        Интерфейсът трябва да съдържа свойство Name за име на животното
+
+·        Интерфейсът трябва да съдържа метод Perform()
+
+Клас Animal
+·        Този клас не трябва да може да се инстанцира!
+
+·        Този клас трябва да имплементира IAnimal
+
+·        Трябва да има и презаписан метод ToString(), който да връща типа и името на животното в следни формат: {AnimalType} {AnimalName}
+
+·        Метод Perform(), който извиква първо MakeNoise(), а после MakeTrick()
+
+·        За свойството Name трябва да направите валидация:
+
+o   Не може да се създава животно, на което името му е null, празен стринг или интервал! При невалидно име да се хвърли изключение ArgumentException със съобщение: "Name can't be null or empty!"
+
+Клас Cat
+·        Този клас трябва да наследява Animal.
+
+·        Метод MakeNoise(), който отпечатва съобщението: “Meow!”.
+
+·        Метод MakeTrick(), който отпечатва: “No trick for you! I'm too lazy!”
+
+ 
+
+Клас Dog
+·        Този клас трябва да наследява Animal.
+
+·        Метод MakeNoise(), който отпечатва съобщението: “Woof!”.
+
+·        Метод MakeTrick(), който отпечатва: “Hold my paw, human!”
+
+ 
+
+Клас Trainer
+·        Този клас трябва да има поле IAnimal entity.
+
+·        Свойство Name:
+
+o   Не може да се създава треньор, чието име е null, празен стринг или интервал! При невалидно име да се хвърли изключение ArgumentException със съобщение: "Name can't be null or empty!"
+
+ 
+Отг.
+class Program
+
+
+
+{
+
+    private static IAnimal CreateAnimal(string[] line)
+
+
+
+    {
+
+
+
+        IAnimal animal = null;
+
+
+
+        switch (line[0])
+
+
+
+        {
+
+
+
+            case "Cat":
+
+
+
+                animal = new Cat(line[1]);
+
+
+
+                break;
+
+
+
+            case "Dog":
+
+
+
+                animal = new Dog(line[1]);
+
+
+
+                break;
+
+
+
+        }
+
+
+
+        return animal;
+
+
+
+    } 
+
+    static void Main(string[] args)
+
+
+
+    {
+
+
+
+        List<IAnimal> animals = new List<IAnimal>();
+
+
+
+
+
+
+
+        int n = int.Parse(Console.ReadLine());
+
+
+
+
+
+
+
+        for (int i = 0; i < n; i++)
+
+
+
+        {
+
+
+
+            string[] line = Console.ReadLine().Split();
+
+
+
+            IAnimal animal = CreateAnimal(line);
+
+
+
+            animals.Add(animal);
+
+
+
+        }
+
+
+
+
+
+
+
+        string trainerName = Console.ReadLine();
+
+
+
+
+
+
+
+        Trainer trainer = null;
+
+
+
+
+
+
+
+        string name = Console.ReadLine();
+
+
+
+
+
+
+
+        while (name != "End")
+
+
+
+        {
+
+
+
+            IAnimal current = animals.Where(a => a.Name.Equals(name)).FirstOrDefault();
+
+
+
+
+
+
+
+            if (current == null)
+
+
+
+            {
+
+
+
+                Console.WriteLine("No such name in the Database!");
+
+
+
+
+
+            }
+
+
+
+            else
+
+
+
+            {
+
+
+
+                if (trainer == null)
+
+
+
+                {
+
+                    trainer = new Trainer(trainerName, current);
+
+                }
+
+                trainer.Work(current);
+
+                trainer.Make();
+
+            }
+
+            name = Console.ReadLine();
+
+         }
+
+        Console.ReadKey();
+
+    }
+
+        
+
+
+
+    }
+
+
+
+
+
+internal class Dog : Animal
+
+{
+
+    public Dog(string name) : base(name)
+
+
+
+    {
+
+
+
+    }
+
+
+
+
+
+
+
+    public override string MakeNoise()
+
+
+
+    {
+
+        return "Woof!";
+
+    }
+
+
+
+
+
+
+
+    public override string MakeTrick()
+
+
+
+    {
+
+        return "Hold my paw, human!";
+
+    }
+
+}
+
+
+
+internal class Trainer
+
+{
+
+    private IAnimal entity;
+
+
+
+    private string name;
+
+
+
+
+
+
+
+    public Trainer(string name, IAnimal entity)
+
+
+
+    {
+
+
+
+        this.Name = name;
+
+
+
+        this.Entity = entity;
+
+
+
+    }
+
+
+
+
+
+
+
+    public string Name
+
+
+
+    {
+
+        get { return name; }
+
+        private set
+
+
+
+        {
+
+            if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+
+
+
+            {
+
+                throw new ArgumentException("Name can't be null or empty!");
+
+            }
+
+            name = value;
+
+        }
+
+    }
+
+
+
+    public IAnimal Entity
+
+
+
+    {
+
+        get { return entity; }
+
+        private set
+
+        {
+
+            entity = value;
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+    public void Work(IAnimal entity)
+
+    {
+
+        this.Entity = entity;
+
+        Console.WriteLine($"Trainer {this.Name} works with {Entity}!");
+
+    }
+
+
+
+
+
+
+
+    public void Make()
+
+    {
+
+        this.Entity.Perform();
+
+    }
+
+}
+
+
+
+internal class Cat : Animal
+
+{
+
+    public Cat(string name) : base(name)
+
+
+
+    {
+
+
+
+    }
+
+
+
+
+
+
+
+    public override string MakeNoise()
+
+
+
+    {
+
+        return "Meow!";
+
+    }
+
+
+
+
+
+
+
+    public override string MakeTrick()
+
+
+
+    {
+
+        return "No trick for you! I'm too lazy!";
+
+    }
+
+}
+
+
+
+internal abstract class Animal : IAnimal
+
+{
+
+    private string name;
+
+    private string type;
+
+    protected Animal(string name)
+
+    {
+
+
+
+        Name = name;
+
+
+
+    }
+
+
+
+    public string Name
+
+
+
+    {
+
+        get { return name; }
+
+        private set
+
+        {
+
+
+
+            if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+
+            {
+
+                throw new ArgumentException("Name can't be null or empty!");
+
+            }
+
+            name = value;
+
+        }
+
+    }
+
+    public string Type
+
+    {
+
+        get { return type; }
+
+        set { type = value; }
+
+    }
+
+    public virtual string MakeNoise()
+
+    {
+
+        return "";
+
+    }
+
+    public virtual string MakeTrick()
+
+    {
+
+        return "";
+
+    }
+
+    public void Perform()
+
+
+
+    {
+
+
+
+        Console.WriteLine($">>> {this.MakeNoise()}");
+
+
+
+        Console.WriteLine($">>> {this.MakeTrick()}");
+
+
+
+    }
+
+
+
+
+
+
+
+    public override string ToString()
+
+
+
+    {
+
+
+
+        return $"{this.Type}  {this.Name}";
+
+
+
+    }
+
+}
+
+
+
+internal interface IMakeNoise
+
+{
+
+    string MakeNoise();
+
+}
+
+
+
+internal interface IMakeTrick
+
+{
+
+    string MakeTrick();
+
+}
+
+
+
+internal interface IAnimal : IMakeNoise , IMakeTrick
+
+{
+
+
+
+    public string Type  {get; }
+
+    public string Name { get; }
+
+    void Perform();
+
+}
+
+Зад.15
+Посочете кое от изброените е дефиниция на метод, който може да бъде презаписан в клас наследник.
+Отг.
+Виртуален метод.
+
+Зад.16
+Дайте пример за абстракция. Напишете примерен код, който:
+Има класовете BaseEmployee, FullTimeEmployee и ContractEmployee.
+Условието на задачата е всички работници да имат име, както и 
+метод CalculateSalary(int workingHours) - който ще изчислява заплатата за работника, 
+като се приема параметър – брой изработени часове. 
+Заплатата на FullTimeEmployee се изчислява по формулата: 250 + workingHours*10.80.
+А заплатата на ContractEmployee по формулата: 250 + workingHours*20.
+Спазвайте принципа за абстракция в обектно-ориентираното програмиране. 
+Отг.
+abstract class BaseEmployee
+    {
+        public string Name { get; set; }
+        public abstract double CalculateSalary(int workingHours);
+    }
+
+    class FullTimeEmployee : BaseEmployee
+    {
+        public override double CalculateSalary(int workingHours)
+        {
+            return 250 + workingHours * 10.80;
+        }
+    }
+
+    class ContractEmployee : BaseEmployee
+    {
+        public override double CalculateSalary(int workingHours)
+        {
+            return 250 + workingHours * 20;
+        }
+    }
+
+Зад.17
+Посочете кое от изброените твърдение е вярно за класовете в C#.
+Отг.
+Можем да създаваме инстанции.,
+Описва състоянието и поведението на обектите
+
+Зад.18
+Дефинирайте термина полиморфизъм в обектно-ориентираното 
+програмиране, като поставите липсващите думи в текста.
+Отг.
+Терминът полиморфизъм в обектно-ориентираното програмиране 
+определя, че [едни и същи (еднотипни)] действия се реализират по [различен начин] в 
+зависимост от обектите, върху които се прилагат. Такива действия се наричат [полиморфични].
+За да се реализира [полиморфно действие], класовете на обектите, върху които се
+прилага това действие, трябва да имат [общ корен] т.е. да бъдат производни на [един и същи клас].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,481 @@
+Зад.1
+Обяснете следния фрагмент от код с думи:
+Отг.
+1. Създава масив от цели числа с име nums
+2. Създава друг масив от цели числа с име otherNums
+3. "Залепя" втория масив отляво на първия
+4. Отпечатва на конзолата на вече общия масив ,като всяко число е разделено със запетая и интервал
+
+Зад.2
+Посочете, кое от дадените твърдения е вярно за потоците в C#.
+Трябва да изберете вярно или невярно от падащото меню срещу всяко твърдение.
+Отг.
+Потоците се използват, когато програмата трябва да прочете или запише данни от или във външен източник на данни. [Вярно]
+Потокът е наредена последователност от байтове. [Вярно]
+Тези байтове се изпращат един след друг и могат да се получават в ред различен от този в който са били изпратени. [Невярно]
+Потоците осигуряват последователен достъп до своите елементи. [Вярно]
+Потоците трябва да се отворят преди употреба и да се затворят накрая. [Вярно]
+Можем да манипулираме подредбата на данните в потока. [Невярно]
+
+Зад.3
+Решете правилно задачата. Имате дадени парчета от код, поставете 
+отделните парчета така, че да получите правилно работещ код,
+който трябва да прочете данните от един файл и да ги копира в друг.
+Отг.
+[using (var source = new FileStream("../../../Image.jpg", FileMode.Open)) {]
+[using (var destination = new FileStream("../../../ImageCopy.jpg", FileMode.Create)) {]
+[byte[] buffer = new byte[1024];]
+[ while (true) {]
+[int readBytes = source.Read(buffer, 0, buffer.Length);]
+[if (readBytes == 0) break;]
+[destination.Write(buffer, 0, readBytes);]
+[} } }]
+
+Зад.4
+Имате даден следният програмен фрагмент:
+При подадени входни данни (например: Pepi и -5) изпълнението на кода води до грешки!
+Вашата задача е да предотвратите сриването на програмата, така че тя да продължава своето изпълнение, без да спира принудително! Открийте и поправете грешките, така че да реши поставената задача!
+Отг.
+internal class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+            try
+
+            {
+
+                string name = Console.ReadLine();
+
+                int age = int.Parse(Console.ReadLine());
+
+                Person person = new Person(name, age);
+
+            }
+
+            catch (ArgumentNullException ex)
+
+            {
+
+                Console.WriteLine(ex.Message);
+
+            }
+
+        }
+
+    }
+
+ internal class Person
+
+    {
+
+        private string firstName;
+
+        private int age;
+
+
+
+        public Person(string firstName, int age)
+
+        {
+
+            FirstName = firstName;
+
+            Age = age;
+
+        }
+
+
+
+        public string FirstName
+
+        {
+
+            get { return firstName; }
+
+            private set
+
+            {
+
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+
+                {
+
+                    throw new ArgumentNullException("value", "The first name cannot be null or empty");
+
+                }
+                firstName = value;
+            }
+
+        }
+
+
+
+        public int Age
+
+        {
+
+            get { return age; }
+
+            private set
+
+            {
+
+                age = value;
+
+            }
+
+        }
+
+    }
+ 
+Зад.5
+Напишете програма на C#, която да дефинира делегат, който може да приема метод, който 
+сумира две реални числа. Накрая резултатът да се отпечата на конзолата.
+Отг.
+public delegate double SumDelegate(double a,double b);
+
+class Program
+
+{
+
+public static double Sum(double a, double b)
+
+{
+
+return a+b;
+
+}
+
+static void Main(string[] args)
+
+{
+
+SumDelegate x = Sum;
+
+double a = double.Parse(Console.ReadLine());
+
+double b = double.Parse(Console.ReadLine());
+
+Console.WriteLine(x(a,b));
+
+}
+
+}
+Зад.6
+Имате даден клас Person:
+Вашата задача е да сравните хората - първо сравнете имената им, след това – възрастите им, а накрая – градовете им.
+
+На единствения ред от изхода изведете статистики: колко хора са еднакви с него, колко не са и общият брой хора във вашата колекция.
+
+Формат: {брой еднакви хора} {брой нееднакви хора} {общ брой хора}
+
+Вход:
+На всеки ред ще получавате човек във формат:
+{име} {възраст} {град}
+Колекционирайте ги, докато не получите "END"
+След това ще получите цяло число N - Nтия човек в колекцията ви. Започвайки от 1.
+Отг.
+class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+            List<Person> people = new List<Person>();
+
+
+
+            string cmd = Console.ReadLine();
+
+
+
+            while (!cmd.Equals("END"))
+
+            {
+
+                string[] info = cmd.Split();
+
+                Person person = new Person(info[0], int.Parse(info[1]), info[2]);
+
+                people.Add(person);
+
+
+
+                cmd = Console.ReadLine();
+
+            }
+
+
+
+            int n = int.Parse(Console.ReadLine());
+
+
+
+            Person p = people[n - 1];
+
+            int equalsPeopleCount = 0;
+
+            int notEqualsPeoplesCount = 0;
+
+
+
+            for (int i = 0; i < people.Count; i++)
+
+            {
+
+                if (i == n - 1)
+
+                {
+
+                    continue;
+
+                }
+
+                if (people[i].Name == p.Name && people[i].Age == p.Age && people[i].City == p.City)
+
+                {
+
+                    equalsPeopleCount++;
+
+                }
+
+                else
+
+                {
+
+                    notEqualsPeoplesCount++;
+
+                }
+
+            }
+
+
+
+            Console.WriteLine(equalsPeopleCount == 0 ? "No matches!" :
+
+          $"{equalsPeopleCount} {notEqualsPeoplesCount} {people.Count}");
+
+        }
+
+    }
+
+internal class Person
+
+    {
+
+        private string name;
+
+        private int age;
+
+        private string city;
+
+
+
+        public Person(string name, int age, string city)
+
+        {
+
+            Name = name;
+
+            Age = age;
+
+            City = city;
+
+        }
+
+
+
+        public string Name
+
+        {
+
+            get { return name; }
+
+            private set { name = value; }
+
+        }
+
+        public int Age
+
+        {
+
+            get { return age; }
+
+            private set { age = value; }
+
+        }
+
+        public string City
+
+        {
+
+            get { return city; }
+
+            private set { city = value; }
+
+        }
+
+    }
+
+Зад.7
+НЯМА Я !!!!!
+
+Зад.8
+НЯМА Я !!!!!
+
+Зад.9
+Обяснете следния фрагмент от код с думи:
+В полето запишете ред по ред какво прави кода и какво се очаква да получим като резултат.
+Отг.
+Инициализираме масив от цели числа.
+Обръщаме подредбата на числата (отзад-напред) с  (nums.Reverse) и запазваме новата
+подредба на масива nums.
+Отпечатваме на конзолата елементите от масива на един ред разделени със ", ". 
+Очакван резултат: 6, 5, 4, 3, 2, 1
+
+Зад.10
+Имате следното парче код:
+ИМА СНИМКА !!! 
+Какво ще се случи след изпълнението на програмата? Ще се изведе ли нещо като 
+резултат и какъв ще бъде той? Запишете вашият отговор в полето.
+Отг.
+На конзолата ще се отпечатат всички четни числа. 2 4 6
+
+Зад.11
+Напишете програма, която въвежда  цели числа разделени с  ", ". Изведете  нечетните числа в множеството, сортирани в нарастващ ред. 
+
+Изберете какъв тип на структури от данни ще използвате за решаване на този проблем.
+Използвайте функционален програмен филтър, сортирайте 
+и отпечатайте на конзолата колекцията от числа на един ред разделени с ", ".
+Отг.
+List<int> list = Console.ReadLine()
+                .Split(", ", StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .Where(x => x % 2 != 0)
+                .OrderBy(x => x)
+                .ToList();
+
+            Console.WriteLine(string.Join(", ", list));
+Зад.12
+Опишете какво представляват референциите 
+към функции/методи в C#, като поставите липсващите думи в текста:
+Отг.
+Ламбда функциите могат да бъдат записани в променливи от тип [делегат].
+[Делегатите ] представляват специален тип [променливи], които съдържат [функции].
+Типовете Func и Action са [generic ] и съдържат: на последна позиция [типа на връщаната стойност],
+а на първите позиции се задават [типовете на параметрите] на функциите. 
+Променливите от тези типове са [референции] към функции. 
+
+Зад.13
+Имате следния код:
+
+        public List<int> CreateList(int item, int count)
+        {
+            List<int> list = new List<int>();
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(item);
+            }
+        }
+
+ Модифицирайте кода,така че методът да работи с всякакъв тип данни.
+Отг.
+public List<T> CreateList<T>(T item, int count)//2т
+        {
+            List<T> list = new List<T>();//2т
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(item);
+            }
+            return list;//2т
+        }
+
+Зад.14
+Имате даден следния програмен фрагмент:
+
+int[] nums = { 1, 2, 3, 4, 5, 6 };
+nums = nums празно .ToArray();
+
+Коя от следните LINQ заявки и какъв ламбда израз ще използвате, 
+за да филтрирате колекцията, така че тя да съдържа само нечетни числа?
+Отг.
+.Where(num => num % 2 != 0)
+
+Зад.15
+На конзолата ще ви бъдат подадени цели числа записани на един ред и разделени с интервал.
+Например: 5 7 12 56 24 3 8 
+
+Напишете собствена функция на C# за парсване на цели числа. Запишете числата в подходяща 
+структура от данни, след което отпечатайте 
+числата на конзолата на един ред разделени със запетая и интервал.
+Отг.
+string input = Console.ReadLine();
+Func<string, int> parser = (x) => int.Parse(x);
+int[] nums = input.Split().Select(parser).ToArray();
+Console.WriteLine(string.Join(", ", nums));
+
+Зад.16
+НЯМА Я !!!!
+
+Зад.17
+Решете правилно задачата. Имате дадени парчета от код, 
+поставете отделните парчета така, че да получите правилно работещ код, който 
+трябва да прочете данните от един файл и да ги копира в друг.
+Отг.
+[using (var reader = new StreamReader("../../../Program.cs")) {]
+
+[using (var writer = new StreamWriter("../../../Copy.cs")) {]
+
+[string line = reader.ReadLine();]
+
+[while (line != null) {]
+
+[writer.WriteLine(line);]
+
+[line = reader.ReadLine();]
+
+[} } }]
+
+Зад.18
+Формулирайте правилната дефиниция за IEnumerator, като поставите липсващите думи в текста:
+Отг.
+Предоставя [последователно, еднопосочно обхождане на колекция от произволен тип].
+IEnumerator има следните методи: [Reset();, MoveNext();].
+IEnumerator притежава свойството: [Current();].
+След като имплементираме методите и свойството, можем да използваме [foreach() цикъл] 
+за нашите User Defined Classes.
+
+Зад.19
+Имате даден следния програмен фрагмент:
+Отг.
+.Where(num => num % 2 == 0)
+
+Зад.20
+Направете сравнение между двата интерфейса IComparable и IComparer, като 
+изберете липсващите думи в текста:
+Отг.
+Интерфейсът IComparable<T> казва [„Аз съм нещо сравнимо“] и [дава метод за
+сравняване на два обекта].
+Интерфейсът IComparer<T> казва [„Аз мога да сравнявам“] и [предоставя начин за промяна 
+на реда на сортиране на колекция].
+
+Зад.21
+Дефинирайте понятието функция, като попълните липсващите думи в текста.
+Отг.
+Функцията е [специално отношение], където на [всички входни данни] има [еднозначен изход].
+
+
+
+
+
+
+
+
+
+

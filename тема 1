@@ -1,0 +1,234 @@
+!!!ЧЕТЕТЕ ВНИМАТЕЛНО ЗАДЧИТЕ (ЩЕ СА РАЗБЪРКАНИ)!!!
+
+Зад.1
+Посоченият по-долу фрагмент на C# събира числото 0.00001 общо 100000 пъти. Очакваният резултат от това е 1. При изпълнение се получава резултат 0.999999999998084. Как ще промените програмата, така че да се поправи тази изчислителна грешка?
+Отг.
+Чрез използване на тип decimal вместо double и добавянето на суфикс M след изписването на 0 и 0.00001.
+
+Зад.2
+Посочете коя среда за разработка на кой програмен език съответства?
+Отг.
+За програмиране на езика Java: → IntelliJ IDEA, За програмиране на езика Python: → PyCharm, За програмиране на езика C#: → Visual Studio
+
+Зад.3
+Показан е следния програмен код на C#. Каква е целта на програмата? Посочете верния отговор.
+Отг.
+Намира всички числа в интервала [1 … 1000], които се делят на 7 и ги отпечатва на конзолата.
+
+Зад.4
+Дайте пример за конзолна програма, която чете две цели числа, въведени от потребителя, и отпечатва по-голямото от двете. 
+Не използвайте вградените функционалности в .NET! Решете задачата с условна конструкция!
+Отг.
+int a = int.Parse(Console.ReadLine());
+
+ int b  = int.Parse(Console.ReadLine());
+
+ if (a > b) 
+
+ {
+
+     Console.WriteLine(a);
+
+ }
+
+ if (b > a) 
+
+ {
+
+     Console.WriteLine(b);
+
+ }
+
+ Зад.5
+ Елените на Дядо Коледа 
+Отг.
+int days = int.Parse(Console.ReadLine());
+            int kgFood = int.Parse(Console.ReadLine()); 
+            double dailyFoodFirst = double.Parse(Console.ReadLine()); 
+            double dailyFoodSecond = double.Parse(Console.ReadLine()); 
+            double dailyFoodThird = double.Parse(Console.ReadLine()); 
+
+            
+            double foodNeeded = days * dailyFoodFirst
+                                + days * dailyFoodSecond
+                                + days * dailyFoodThird; 
+
+            if (kgFood >= foodNeeded) 
+            {
+                Console.WriteLine($"{Math.Floor(kgFood - foodNeeded)} kilos of food left.");
+            }
+            else 
+            {
+                Console.WriteLine($"{Math.Ceiling(foodNeeded - kgFood)} more kilos of food are needed.");
+            }
+
+Зад.6
+Показан е следния програмен код на C#. Каква е целта на програмата? Посочете верния отговор.
+Отг.
+Намира всички числа в интервала [1 … 1000], които завършват на 7 и ги отпечатва на конзолата.
+
+Зад.7
+Демонстрирайте как бихте създали конзолно приложение в средата за разработка Visual Studio. Подредете картинките така, че да спазват правилната последователност от стъпките за създаване на ново конзолно приложение. 
+
+Номерирайте картинките, като използвате цифрите за влачене под таблицата.
+Отг. Тва е "ez" аре малко по-сериозно (ТОВА НЕ Е ОТГОВОРА)
+
+Зад.8
+Дайте пример за for - цикъл в C#. За пример може да ползвате код, който отпечатва на конзолата числата от 1 до 100.
+Отг.
+for (int i = 1; i <= 100; i++)
+{
+      Console.WriteLine(i);
+}
+
+Зад.9
+В таблицата по-долу трябва да посочите правилните места на операторите за сравнение в C#. В колона Означение поставяте съответния оператор, а в колона Работи за - задавате данните, за които може да работи съответния оператор.
+Отг.
+Оператор	Означение	Работи за
+Проверка за равенство	[==]	|  [числа, стрингове, дати]
+Проверка за различие	[ !=] |______________________________________
+По-голямо	[ >]	            |  
+По-голямо или равно	[>=]   |  [числа, дати, други сравними типове]
+По-малко	[<]               |
+По-малко или равно	[<=]    |
+
+Зад.10
+Дефинирайте понятието алгоритъм.
+Отг.
+Поредица от команди, необходими, за да се свърши определена работа.
+
+Зад.11
+ Футболен мач
+Отг.
+static void Main(string[] args)
+        {
+            string sector = Console.ReadLine(); 
+            int row = int.Parse(Console.ReadLine());
+            int col = int.Parse(Console.ReadLine()); 
+            double totalSum = 0;
+
+            switch (sector)
+            { 
+                case "Sector A":
+                    totalSum = GetTotalProfit(row, col, 11.60); 
+                    break; 
+                case "Sector B":
+                    totalSum = GetTotalProfit(row, col, 14.50);
+                    break;
+                case "Sector C": 
+                    totalSum = GetTotalProfit(row, col, 16.10); 
+                    break;
+                case "Sector D":
+                    totalSum = GetTotalProfit(row, col, 8.40);
+                    break;
+            }
+            Console.WriteLine($"{sector} profit is {totalSum:f2} lv.");
+        }
+        static double GetTotalProfit(int row, int col, double price)
+        {
+            return row * col * price;
+        }
+
+Зад.12
+Посочете коя от променливите е правилно декларирана?
+Отг.
+bool isSunny = true;
+
+Зад.13
+Дайте пример за while цикъл в C#, който отпечатва числата от 1 до 10(включително), всяко на отделен ред.
+Отг.
+int num = 1;
+while (num <= 10)
+{
+       Console.WriteLine(num++);
+}
+
+Зад.14
+Посочете как се записва в C# кратка форма на условна конструкция?
+Отг.
+ if(true) { //some code... }
+
+ Зад.15
+ Деление без остатък
+ Отг.
+ int n = int.Parse(Console.ReadLine()); 
+            int d2 = 0; 
+            int d3 = 0; 
+            int d5 = 0; 
+
+            for (int i = 0; i < n; i++) 
+            {
+                int number = int.Parse(Console.ReadLine());
+                if (number % 2 == 0) 
+                {
+                    d2++; 
+                }
+                if (number % 3 == 0) 
+                {
+                    d3++; 
+                }
+                if (number % 5 == 0) 
+                {
+                    d5++; 
+                }
+            }
+
+            Console.WriteLine(d2); 
+            Console.WriteLine(d3); 
+            Console.WriteLine(d5);
+
+ Зад.16
+ Имате даден следният програмен фрагмент:
+ Отг.
+  Between 100 and 200 
+
+Зад.17
+ Дефинирайте понятието среда за разработка (IDE).
+Средата за програмиране (Integrated Development Environment - IDE, интегрирана среда за разработка) е
+Отг.
+съвкупност от традиционни инструменти за разработване на софтуерни приложения.
+
+Зад.18
+Болница
+static void Main(string[] args)
+        {
+            int days = int.Parse(Console.ReadLine()); 
+            int doctors = 7;
+            int treated = 0; 
+            int untreated = 0; 
+            for (int day = 1; day <= days; day++)
+            {
+                int patientsCount = int.Parse(Console.ReadLine());
+
+                if (day % 3 == 0 && untreated > treated) 
+                {
+                    doctors++; 
+                }
+                if (patientsCount <= doctors)
+                {
+                    treated += patientsCount; 
+                }
+                else
+                {
+                    treated += doctors;
+                    untreated += (patientsCount - doctors);
+                } 
+            } 
+            Console.WriteLine($"Treated patients: {treated}.");
+            Console.WriteLine($"Untreated patients: {untreated}.");
+        }
+
+Зад.19
+Показан е следният програмен фрагмент на C#. Обобщете какъв ще бъде резултатът от изпълнението на програмата?
+Отг.
+Програмата прочита едно целочислено число. След което цикълът отпечатва числата от 1 до това число n в обратен ред, като всяко едно от числата се отпечатва на отделен ред.
+
+Зад.20
+Обяснете в каква последователност ще се изпълни програмата, когато имаме серия от проверки като на примера по-долу?
+Отг.
+Последователно сравнява входното число от конзолата с цифрите от 1 до 9, като всяко следващо сравнение се извършва, само в случай че предходното сравнение не е било истина. Ако никое от if условията не е изпълнено, се изпълнява последната else клаузa.
+
+Зад.21
+Даден е следният примерен код на C#. Изчислете какъв ще бъде резултата, ако числото n = 5 , запишете в полето за отговор това, което ще се отпечата на конзолата.
+Отг.
+6

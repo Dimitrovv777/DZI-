@@ -1,0 +1,321 @@
+Зад.1
+Опишете как ще преминете от двоична бройна система в десетична.
+Преобразувайте числото  11101(2)  от двоична в десетична бройна система.
+Отг.
+11101 = 1x2^4 + 1x2^3 + 1x2^2 + 0x2^1 +1x2^0 = 16 + 8 + 4 + 0 +1 = 29
+
+Зад.2
+Великденски яйца
+Отг.
+static void Main(string[] args)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            int eggs = int.Parse(Console.ReadLine());
+            for (int i = 0; i < eggs; i++)
+            {
+                string color = Console.ReadLine(); 
+                if (!dict.ContainsKey(color))
+                {
+                    dict.Add(color, 0);
+                }
+                dict[color]++;
+            }
+
+            Console.WriteLine($"Red eggs: {(dict.ContainsKey("red") ? dict["red"] : 0)}");
+            Console.WriteLine($"Orange eggs: {(dict.ContainsKey("orange") ? dict["orange"] : 0)}");
+            Console.WriteLine($"Blue eggs: {(dict.ContainsKey("blue") ? dict["blue"] : 0)}");
+            Console.WriteLine($"Green eggs: {(dict.ContainsKey("green") ? dict["green"] : 0)}");
+            Console.WriteLine($"Max eggs: {dict.Values.Max()} -> {dict.OrderByDescending(x => x.Value).FirstOrDefault().Key}");
+        }
+
+Зад.3
+Дефинирайте понятието многомерен масив в C#. 
+Отг.
+Многомерният масив е масив с две или повече размерности.
+декларира се с  int[,]
+
+Зад.4
+Дефинирайте понятието сорс-контрол система. Какво представляват? За какво служат? Как се използват?
+Отг.
+сорс-контрол система е съвкупност от инструменти, които служат за управление на версиите на софтуерния код и други ресурси в рамките на екипния процес.
+
+Зад.5
+Какво представляват бройните системи? Дефинирайте понятието бройна система, като поставите липсващите думи в изреченията. 
+Отг.
+Бройните системи са начин за [представяне] на числата, чрез [краен набор] от [графични знаци] наречени цифри. Към тях трябва да се добавят и [правила] за представяне на числата.
+
+Зад.6
+Напишете примерен код, който да отпечата на конзолата следната матрица:
+
+int[,] matrix =
+{
+      {1, 2, 3, 4}, 
+      {5, 6, 7, 8},
+};
+Отг.
+for (int row = 0; row < matrix.GetLength(0); row++)
+{
+      for (int col = 0; col < matrix.GetLength(1); col++)
+      {
+             Console.Write(matrix[row, col]);
+      }
+      Console.WriteLine();
+}
+
+Зад.7
+Даден е следния код на C#.
+Отг.
+Ще възникне изключение.
+
+Зад.8
+Посочете правилната стойност по подразбиране към всеки от типовете данни:
+Отг.
+Правилният отговор е: object → null, float → 0.0f, sbyte → 0, char → '\u0000', bool → false, decimal → 0.0m, string → null
+
+Зад.9
+Посочете как се декларира многомерен масив в C#.
+Отг.
+nt[,] myArray = new int[2,3]
+{
+    { 1, 2, 3 },
+    { 4, 3, 5 },
+};
+
+Зад.10
+В най-популярната система за контрол на версиите GitHub има няколко основни команди, които се използват когато пишете в конзолния клиент GitBash. Обяснете какво прави командата git pull, като поставите липсващите думи в празните полета.
+
+С командата pull автоматично  празно  промените от отдалеченото хранилище.
+Отг.
+изтегляте
+
+Зад.11
+Посочете кое от изброените е вярно за символните низове?
+Отг.
+Правилните отговори са: Символните низове имат свойство Length.,
+Символните низове позволяват достъп по индекс.
+
+Зад.12
+Посочете кое твърдение е вярно за променливите?
+Отг.
+Правилните отговори са: Променливата е място, на което пазим информация., 
+Всяка една променлива в C# си има тип и име., 
+Не може да има две променливи с едно и също име.
+
+Зад.13
+Демонстрирайте как ще достъпите елемент от масива. Напишете код с C#, който да отпечата на конзолата името Alex от масива names.
+
+string[] names =  {"John", "Peter", "Stella", "Alex", "Jessie"};
+Отг.
+Console.WriteLine(names[3]);
+
+Зад.14
+Даден е следния програмен код на C#. След изпълнението на тази програма какво ще се отпечата на конзолата? Решете задачата и в празното поле запишете само това, което ще се отпечата!
+
+Примерен вход: Java C# PHP PHP JAVA C java
+Отг.
+java, c#, c
+
+Зад.15
+Посочете по кой от начините ще добавите стойност в речник, ако речника
+има за ключ тип данни низ и за стойност целочислен тип данни?
+Отг.
+dict.Add("tomatoes", 2);
+
+Зад.16
+Посочете кои от характеристиките се отнасят към централизираните
+сорс-контрол системи и кои към децентрализираните сорс-контрол системи.
+Отг.
+[Централизирани]
+[Децентрализирани]
+[Централизирани]
+[Децентрализирани]
+[Централизирани]
+[Централизирани]
+
+Зад.17
+Ако имате речник с ключ от тип данни низ и стойност тип данни цяло
+число, по кой от изброените начини ще премахнете елемент от този речник, 
+който има за ключ стойност "tomatoes"? Посочете верния отговор?
+Отг.
+dict.Remove("tomatoes");
+
+Зад.18
+Дефинирайте понятието двоична бройна система. Какво представлява? 
+Къде се използва най-често? Как са представени числата в двоичната бройна система?
+Отг.
+Двоичната бройна система (binary numeral system), е системата, която се
+използва за представяне и обработка на числата в съвременните електронноизчислителни машини. 
+За тяхното представяне, се използват само цифрите 0 и 1.
+
+Зад.19
+Видове числа
+Отг.
+ static void Main(string[] args)
+        {
+            int[] nums = Console.ReadLine().Split(',').Select(int.Parse).ToArray();
+
+            List<int> evens = new List<int>(); 
+            List<int> odds = new List<int>();  
+            List<int> sum5 = new List<int>();  
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] % 2 == 0)
+                {
+                    evens.Add(nums[i]);
+                }
+                else
+                {
+                    odds.Add(nums[i]);
+                }
+                if (SumDigits(nums[i]) % 10 == 5)
+                {
+                    sum5.Add(nums[i]); 
+                }
+            }
+            Console.WriteLine(String.Join(", ", evens));
+            Console.WriteLine(String.Join(", ", odds));
+            Console.WriteLine(String.Join(", ", sum5));
+        }
+        public static int SumDigits(int number)
+        {
+            int sum = 0;
+            while (number != 0)
+            {
+                sum += number % 10;
+                number /= 10;
+            }
+            return sum;
+        }
+
+Зад.20
+Баскетболен сезон
+Отг.
+static void Main(string[] args)
+        {
+            SortedDictionary<string, int> dict = new SortedDictionary<string, int>();
+
+            string[] input = Console.ReadLine().Split(" - ", StringSplitOptions.RemoveEmptyEntries);
+            while (!input[0].Equals("END"))
+            {
+                if (!dict.ContainsKey(input[0]))
+                { 
+                    dict.Add(input[0], 0); 
+                }
+                dict[input[0]] += int.Parse(input[1]);
+                input = Console.ReadLine().Split(" - ", StringSplitOptions.RemoveEmptyEntries); 
+            }
+
+            foreach (var kvp in dict) 
+            {
+                Console.WriteLine($"{kvp.Key} -> {kvp.Value}");
+            }
+        }
+
+Зад.21
+Демонстрирайте как ще запишете с код на C# променлива от тип символен 
+низ със стойност: Hello, my name is Niki. Запишете отговора в полето.
+Отг.
+string text = "Hello, my name is Niki.";
+
+Зад.22
+Магически числа
+Отг.
+static void Main(string[] args)
+        {
+            int[] nums = Console.ReadLine().Split(',').Select(int.Parse).ToArray();
+            List<int> evens = new List<int>();
+            List<int> odds = new List<int>(); 
+            List<int> sum5 = new List<int>(); 
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] % 2 == 0 && (nums[i] % 10 == 4 || nums[i] % 10 == 8))
+                {
+                    evens.Add(nums[i]);
+                }
+                else if (nums[i] % 2 != 0 && (nums[i] % 10 == 5 || nums[i] % 10 == 7)) 
+                {
+                    odds.Add(nums[i]);
+                }
+                if (SumDigits(nums[i]) == 15)
+                {
+                    sum5.Add(nums[i]); 
+                }
+            }
+
+            Console.WriteLine(String.Join(", ", evens));
+            Console.WriteLine(String.Join(", ", odds));
+            Console.WriteLine(String.Join(", ", sum5));
+        }
+        public static int SumDigits(int number)
+        {
+            int sum = 0;
+
+            while (number != 0)
+            {
+                sum += number % 10;
+                number /= 10;
+            }
+
+            return sum;
+        }
+Зад.23
+Дайте пример за това как бихте декларирали променлива от тип низ със стойност "Hello, World!"?
+Отг.
+string message = "Hello, World!"
+
+Зад.24
+Обяснете какво прави метода ContainsValue(V) реализиран в класа Dictionary<K,V>?
+Отг.
+Проверява дали в речникa присъстват други двоики със същата стойност.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

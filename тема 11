@@ -1,0 +1,1246 @@
+Зад.1
+Фрагмент:
+
+using System;
+
+    public class Substring_broken
+    {
+        public static void Main()
+        {
+            string text = Console.ReadLine();
+            int jump = int.Parse(Console.ReadLine());
+
+            const char Search = 'р';
+            bool hasMatch = false;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == Search)
+                {
+                    hasMatch = true;
+
+                    int endIndex = jump;
+
+                    if (endIndex > text.Length)
+                    {
+                        endIndex = text.Length;
+                    }
+
+                    string matchedString = text.Substring(i, endIndex);
+                    Console.WriteLine(matchedString);
+                    i += jump;
+                }
+            }
+
+            if (!hasMatch)
+            {
+                Console.WriteLine("no");
+            }
+        }
+    }
+Забележка: Фрагментът съдържа логически грешки, които водят до неочаквано повдение на програмата. Открийте ги с помомощта на дебъгера и предоставете поправения код
+
+Отг.
+static void Main(string[] args)
+
+
+
+        {
+
+
+
+            string text = Console.ReadLine();
+
+
+
+            int jump = int.Parse(Console.ReadLine());
+
+
+
+
+
+
+
+            const char Search = 'р';
+
+
+
+            bool hasMatch = false;
+
+
+
+
+
+
+
+            for (int i = 0; i < text.Length; i++)
+
+
+
+            {
+
+
+
+                char c = text[i];
+
+
+
+                if (c == 'p')
+
+
+
+                {
+
+
+
+                    hasMatch = true;
+
+
+
+
+
+
+
+                    int lenght = i + jump + 1;
+
+
+
+
+
+
+
+                    if (lenght > text.Length)
+
+
+
+                    {
+
+
+
+                        lenght = text.Length;
+
+
+
+                    }
+
+
+
+
+
+
+
+                    string matchedString = text.Substring(i, lenght - i);
+
+
+
+                    Console.WriteLine(matchedString);
+
+
+
+                    i += jump;
+
+
+
+                }
+
+
+
+            }
+
+
+
+
+
+
+
+            if (!hasMatch)
+
+
+
+            {
+
+
+
+                Console.WriteLine("no");
+
+
+
+            }
+
+
+
+            Console.ReadKey();
+
+
+
+
+
+
+
+        }
+
+
+Зад.2
+Обяснете как си взаимодействат трите слоя на трислойната архитектура.
+Отг.
+Трислойната архитектура се състои от представителен слой ,бизнес слой и слой за достъпване на данни ,които слоеве нямат право да имат връзка с всеки останал ,а само с определени.
+1. Представителният слой служи за интерфейсът и получаването/връщането на данни от/на потребителят. Той е най-горният слой и има връзка само бизнес слоя.
+
+2. Бизнес слоят служи за обработка и манипулация на данните спрямо приложената бизнес логика в него. Той е средният слой и служи за връзка между представителния слой и слоя за достъп на данни.
+
+3. Слоят за достъп на данни представлява базата данни и нужните за нейната манипулация CRUD (Create ,Read ,Update ,Delete) операции. Той е най-долният слой и има връзка само с бизнес слоя. 
+
+Зад.3
+Посочете кое от следните действия НЕ е възможно с помощта на дебъгер?
+Отг.
+Подчертаване на логически грешки в програма
+
+Зад.4
+Посочете кой от следните идентификатори има нужда от рефакториране.
+Отг.
+ int numberofpeople;
+
+Зад.5
+Демонстрирайте рефакториране на следния фрагмент от код, като зададате подходящо именуване и форматиране, ако и където това е необходимо:
+
+class tdl { //class for todo list
+
+public string _Name { get; set; }
+
+public string description { get; set; }
+
+public virtual List<ToDoItem> Items { get; set; }
+
+}
+
+Отг.
+class ToDoList { //class for todo list
+
+public string Name { get; set; }
+
+public string Description { get; set; }
+
+public virtual List<ToDoItem> Items { get; set; }
+
+}
+
+Зад.6
+Дайте пример за коректно именуване на компонентен тест, който проверява дали потребител влиза успешно с валидно потребителско име и парола.
+Отг.
+Login_CorrectUsernameAndPassword_SuccessfulLogin
+
+Зад.7
+Посочете кой програмен фрагмент няма нарушения във форматирането си.
+Отг.
+Всички примери имат нарушения в правилата за форматиране
+
+Зад.8
+
+Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+Условие:
+
+Разполагате с код за калкулатор за действия +, -, *, /, ** (степенуване).
+
+Напишете компоненти тестове за него, които тестват подходящи специфични случаи при прилагането на операциите, например:
+
+* събиране на положително и отрицателно число
+
+* изваждане на число от себе си
+
+* деление на нула
+
+ГОЛЯМА ЗАДАЧА ЗА 40 ТОЧКИ !!!!
+public class Program
+{
+public static double Division(double a, double b)
+{
+if (b == 0)
+{
+throw new DivideByZeroException();
+}
+return a / b;
+}
+public static double Subtract(double a, double b)
+{
+return a - b;
+}
+
+public static double Multiply(double a, double b)
+{
+return a * b;
+}
+
+public static double Add(double a, double b)
+{
+return a + b;
+}
+
+static void Main(string[] args)
+{
+double a = double.Parse(Console.ReadLine());
+double b = double.Parse(Console.ReadLine());
+string operation = Console.ReadLine();
+
+double result = 0;
+
+if (operation == "+")
+{
+result = Add(a, b);
+}
+else if (operation == "*")
+{
+result = Multiply(a, b);
+}
+else if (operation == "-")
+{
+result = Subtract(a, b);
+}
+else if (operation == "/")
+{
+try
+{
+result = Division(a, b);
+}
+catch (DivideByZeroException)
+{
+Console.WriteLine("Invalid result caused by division by zero!");
+}
+}
+
+Console.WriteLine(result);
+}
+}
+
+CalculatorTests.cs:
+
+public class Tests
+{
+[Test]
+[Category("Addition")]
+public void TestAddingTwoPositiveIntegerNumbers()
+{
+//Arrange
+int a = 5;
+int b = 9;
+
+//Act
+double result = Program.(a, b);
+
+//Assert
+Assert.AreEqual(result, 14);
+}
+
+[Test]
+[Category("Addition")]
+public void TestAddingTwoPositiveFloatingPointNumbers()
+{
+//Arrange
+double a = 5.43;
+double b = 0.33;
+
+//Act
+double result = Program.(a, b);
+
+//Assert
+Assert.(result, 5.76);
+}
+
+[Test]
+[Category("Addition")]
+public void TestAddingTwoNegativeNumbers()
+{
+//Arrange
+double a = -3.431;
+double b = -3.241;
+
+//Act
+double result = Program.Add(a, b);
+
+//Assert
+Assert.AreEqual(result, -6.672, 0.0001);
+}
+
+[Test]
+[Category("Addition")]
+public void TestAddingTwoZeroes()
+{
+double a = 0;
+double b = 0;
+
+double result = Program.Add(a, b);
+Assert.AreEqual(result, 0);
+}
+
+[Test]
+[Category("Addition")]
+public void TestAddingZeroAndNumber()
+{
+double a = 1;
+double b = 0;
+
+double result = Program.(a, b);
+Assert.AreEqual(result, 1);
+}
+
+[Test]
+[Category("Addition")]
+public void TestAddingOppositeNumbers()
+{
+double a = -5.34;
+double b = 5.34;
+
+double result = Program.Add(a, b);
+Assert.AreEqual(result, 0);
+}
+
+[Test]
+[Category("Subtraction")]
+public void TestSubtractionFirstBigger()
+{
+double a = 5;
+double b = 3;
+
+double result = Program.Subtract(a, b);
+
+Assert.AreEqual(result, 2);
+}
+
+[Test]
+[Category("Subtraction")]
+public void TestSubtractionSecondBigger()
+{
+double a = 3;
+double b = 5;
+
+double result = Program.Subtract(a, b);
+
+Assert.AreEqual(result, -2);
+}
+
+[Test]
+[Category("Subtraction")]
+public void TestSubtractZero()
+{
+double a = 3;
+double b = 0;
+
+double result = Program.Subtract(a, b);
+
+Assert.AreEqual(result, 3);
+}
+
+[Test]
+[Category("Subtraction")]
+public void TestSubtractNegativeNumbers()
+double a = -3;
+double b = -5;
+
+double result = Program.Subtract(a, b);
+Assert.AreEqual(result, 2);
+}
+
+[Test]
+[Category("Multiplication")]
+public void TestMultiplicationTwoPositiveNumbers()
+{
+double a = 3;
+double b = 2.5;
+
+double result = Program.Multiply(a, b);
+
+Assert.AreEqual(result, 7.5);
+}
+
+[Test]
+[Category("Multiplication")]
+public void TestMultiplicationTwoNegativeNumbers()
+{
+double a = -3;
+double b = -2;
+double result = Program.(a, b);
+Assert.AreEqual(result, 6);
+}
+[Test]
+[Category("Multiplication")]
+public void TestMultiplicationTwoDifferentSignedNumbers()
+{
+double a = -3;
+double b = 2;
+double result = Program.Multiply(a, b);
+Assert.AreEqual(result, -6)
+}
+
+[Test]
+[Category("Multiplication")]
+public void TestMultiplicationWithZero()
+{
+double a = 0;
+double b = 3;
+
+double result = Program.Multiply(a, b);
+
+Assert.AreEqual(result, 0);
+}
+
+[Test]
+[Category("Division")]
+public void TestDivisionWithTwoNumbers()
+{
+double a = 3;
+double b = 2;
+
+double result = Program.Division(a, b)
+
+Assert.AreEqual(result, 1.5);
+}
+
+[Test]
+[Category("Division")]
+public void TestDivisionWithBiggerNumber()
+{
+double a = 3;
+double b = 5;
+
+double result = Program.Division(a, b);
+
+Assert.AreEqual(result, 0.6);
+}
+
+[Test]
+[Category("Division")]
+public void TestDivisionZeroByNumber()
+{
+double a = 0;
+double b = 5;
+
+double result = Program.Division(a, b);
+
+
+}
+
+[Test]
+[Category("Division")]
+public void TestDivisionByZero()
+double a = 5;
+double b = 0;
+
+Assert.Throws<DivideByZeroException>(() => Program.Division(a, b));
+}
+}
+
+Отг.
+using ConsoleApp7;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using NUnit.Framework;
+
+using System;
+
+using System.ComponentModel;
+
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+
+using CategoryAttribute = NUnit.Framework.CategoryAttribute;
+
+
+
+namespace UnitTestProject1
+
+{
+
+    [TestClass]
+
+        public class Tests
+
+        {
+
+            [Test]
+
+            [Category("Addition")]
+
+            public void TestAddingTwoPositiveIntegerNumbers()
+
+            {
+
+                //Arrange
+
+                int a = 5;
+
+                int b = 9;
+
+
+
+                //Act
+
+                double result = Program.Add(a, b);
+
+
+
+                //Assert
+
+                Assert.AreEqual(result, 14);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Addition")]
+
+            public void TestAddingTwoPositiveFloatingPointNumbers()
+
+            {
+
+                //Arrange
+
+                double a = 5.43;
+
+                double b = 0.33;
+
+
+
+                //Act
+
+                double result = Program.Add(a, b);
+
+
+
+                //Assert
+
+                Assert.AreEqual(result, 5.76);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Addition")]
+
+            public void TestAddingTwoNegativeNumbers()
+
+            {
+
+                //Arrange
+
+                double a = -3.431;
+
+                double b = -3.241;
+
+
+
+                //Act
+
+                double result = Program.Add(a, b);
+
+
+
+                //Assert
+
+                Assert.AreEqual(result, -6.672, 0.0001);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Addition")]
+
+            public void TestAddingTwoZeroes()
+
+            {
+
+                double a = 0;
+
+                double b = 0;
+
+
+
+                double result = Program.Add(a, b);
+
+                Assert.AreEqual(result, 0);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Addition")]
+
+            public void TestAddingZeroAndNumber()
+
+            {
+
+                double a = 1;
+
+                double b = 0;
+
+
+
+                double result = Program.Add(a, b);
+
+                Assert.AreEqual(result, 1);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Addition")]
+
+            public void TestAddingOppositeNumbers()
+
+            {
+
+                double a = -5.34;
+
+                double b = 5.34;
+
+
+
+                double result = Program.Add(a, b);
+
+                Assert.AreEqual(result, 0);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Subtraction")]
+
+            public void TestSubtractionFirstBigger()
+
+            {
+
+                double a = 5;
+
+                double b = 3;
+
+
+
+                double result = Program.Subtract(a, b);
+
+
+
+                Assert.AreEqual(result, 2);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Subtraction")]
+
+            public void TestSubtractionSecondBigger()
+
+            {
+
+                double a = 3;
+
+                double b = 5;
+
+
+
+                double result = Program.Subtract(a, b);
+
+
+
+                Assert.AreEqual(result, -2);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Subtraction")]
+
+            public void TestSubtractZero()
+
+            {
+
+                double a = 3;
+
+                double b = 0;
+
+
+
+                double result = Program.Subtract(a, b);
+
+
+
+                Assert.AreEqual(result, 3);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Subtraction")]
+
+            public void TestSubtractNegativeNumbers()
+
+            {
+
+                double a = -3;
+
+                double b = -5;
+
+
+
+                double result = Program.Subtract(a, b);
+
+                Assert.AreEqual(result, 2);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Multiplication")]
+
+            public void TestMultiplicationTwoPositiveNumbers()
+
+            {
+
+                double a = 3;
+
+                double b = 2.5;
+
+
+
+                double result = Program.Multiply(a, b);
+
+
+
+                Assert.AreEqual(result, 7.5);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Multiplication")]
+
+            public void TestMultiplicationTwoNegativeNumbers()
+
+            {
+
+                double a = -3;
+
+                double b = -2;
+
+                double result = Program.Multiply(a, b);
+
+                Assert.AreEqual(result, 6);
+
+            }
+
+            [Test]
+
+            [Category("Multiplication")]
+
+            public void TestMultiplicationTwoDifferentSignedNumbers()
+
+            {
+
+                double a = -3;
+
+                double b = 2;
+
+                double result = Program.Multiply(a, b);
+
+                Assert.AreEqual(result, -6);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Multiplication")]
+
+            public void TestMultiplicationWithZero()
+
+            {
+
+                double a = 0;
+
+                double b = 3;
+
+
+
+                double result = Program.Multiply(a, b);
+
+
+
+                Assert.AreEqual(result, 0);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Division")]
+
+            public void TestDivisionWithTwoNumbers()
+
+            {
+
+                double a = 3;
+
+                double b = 2;
+
+
+
+                double result = Program.Division(a, b);
+
+
+
+                Assert.AreEqual(result, 1.5);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Division")]
+
+            public void TestDivisionWithBiggerNumber()
+
+            {
+
+                double a = 3;
+
+                double b = 5;
+
+
+
+                double result = Program.Division(a, b);
+
+
+
+                Assert.AreEqual(result, 0.6);
+
+            }
+
+
+
+            [Test]
+
+            [Category("Division")]
+
+            public void TestDivisionZeroByNumber()
+
+            {
+
+                double a = 0;
+
+                double b = 5;
+
+
+
+                double result = Program.Division(a, b);
+
+            Assert.AreEqual(result, 0);
+
+        }
+
+
+
+            [Test]
+
+            [Category("Division")]
+
+            public void TestDivisionByZero()
+
+            {
+
+                double a = 5;
+
+                double b = 0;
+
+
+
+                Assert.ThrowsException<DivideByZeroException>(() => Program.Division(a, b));
+
+            }
+
+        }
+
+    }
+
+Зад.9
+Посочете кое от следните НЕ е част от процеса по рефакториране:
+Отг.
+добавяне на нова функционалност
+
+Зад.10
+Демонстрирайте рефакториране на следния фрагмент от код, като зададате подходящо именуване и форматиране, ако и където това е необходимо:
+
+class tdi { //class for todo items
+
+public string _Name { get; set; }
+
+public string description { get; set; }
+
+public int ToDoListId { get; set; }
+
+}
+
+Отг.
+class ToDoItem { //class for todo items
+
+public string Name { get; set; }
+
+public string Description { get; set; }
+
+public int ToDoListId { get; set; }
+
+}
+
+Зад.11
+Дефинирайте значението на абревиатурата ААА в контекста на компоненто тестване.
+Отг.
+Arrange-Act-Assert
+
+Зад.12
+Дайте пример за коректно именуване на компонентен тест, който проверява дали потребител получава грешка при опит за влизане с грешно потребителско име и парола
+Отг.
+Login_IncorrectUsernameAndPassword_UnsuccessfulLogin
+
+Зад.13
+Посочете значението на абревиатурата MVC.
+Отг.
+Model View Controller
+
+Зад.14
+Посочете кое действие от компонентния тест се случва в Act фазата.
+Отг.
+извървшане на действието за тестване
+
+Зад.15
+Фрагмент:
+
+using System;
+
+class InstructionSet_broken
+{
+    static void Main()
+    {
+
+        string opCode = Console.ReadLine();
+
+        while (opCode != "end")
+        {
+            string[] codeArgs = opCode.Split(' ');
+
+            long result = 0;
+            switch (codeArgs[0])
+            {
+                case "INC":
+                    {
+                        int operandOne = int.Parse(codeArgs[1]);
+                        result = operandOne++;
+                        break;
+                    }
+                case "DEC":
+                    {
+                        int operandOne = int.Parse(codeArgs[1]);
+                        result = operandOne--;
+                        break;
+                    }
+                case "ADD":
+                    {
+                        int operandOne = int.Parse(codeArgs[1]);
+                        int operandTwo = int.Parse(codeArgs[2]);
+                        result = operandOne + operandTwo;
+                        break;
+                    }
+                case "MLA":
+                    {
+                        int operandOne = int.Parse(codeArgs[1]);
+                        int operandTwo = int.Parse(codeArgs[2]);
+                        result = (long)(operandOne * operandTwo);
+                        break;
+                    }
+            }
+
+            Console.WriteLine(result);
+        }
+    }
+}
+Забележка: Фрагментът съдържа логически грешки, които водят до неочаквано повдение на програмата. Открийте ги с помомощта на дебъгера и предоставете поправения код
+
+Отг.
+static void Main(string[] args)
+
+        {
+
+            string opCode = Console.ReadLine();
+
+
+
+            while (opCode != "END")
+
+            {
+
+                string[] codeArgs = opCode.Split();
+
+
+
+                long result = 0;
+
+                switch (codeArgs[0])
+
+                {
+
+                    case "INC":
+
+                        {
+
+                            int operandOne = int.Parse(codeArgs[1]);
+
+                            result = operandOne+1;
+
+                            break;
+
+                        }
+
+                    case "DEC":
+
+                        {
+
+                            int operandOne = int.Parse(codeArgs[1]);
+
+                            result = operandOne-1;
+
+                            break;
+
+                        }
+
+                    case "ADD":
+
+                        {
+
+                            int operandOne = int.Parse(codeArgs[1]);
+
+                            int operandTwo = int.Parse(codeArgs[2]);
+
+                            result = operandOne + operandTwo;
+
+                            break;
+
+                        }
+
+                    case "MLA":
+
+                        {
+
+                            int operandOne = int.Parse(codeArgs[1]);
+
+                            int operandTwo = int.Parse(codeArgs[2]);
+
+                            result = (long)(operandOne * operandTwo);
+
+                            break;
+
+                        }
+
+                }
+
+
+
+                Console.WriteLine(result);
+
+                opCode = Console.ReadLine();
+
+            }
+
+        }
+
+Зад.16
+Дефинирайте понятието Контролер (Controller) от MVC концепцията.
+Отг.
+Контролерът в MVC служи за обработка на заявките на потребителя към приложението
+
+Зад.17
+Какво стои зад буквата V в абревиатурата на архитектурния шаблон MVC?
+Отг.
+View
+
+Зад.18
+Какво действие активира клавиша F10 във Visual Studio?
+Отг.
+Step over
+
+Зад.19
+Дефинирайте понятието Изглед (View) от MVC концепцията.
+Отг.
+Изгледът в MVC служи за контрол на външен вид и взаимодействие с потребителя 
+
+Зад.20
+точка за умишлено прекъсване на програма с цел дебъгване
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
